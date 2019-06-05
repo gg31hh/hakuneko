@@ -1,0 +1,135 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="hakuneko-list">
+
+    <template id="viewport"></template>
+
+    <script>
+        /** @polymerElement */
+        class HakunekoList extends Polymer.Element {
+            /**
+             *
+             */
+            static get is() {
+                return 'hakuneko-list';
+            }
+
+            /**
+             *
+             */
+            static get properties() {
+                return {
+                    as: {
+                        type: String,
+                        value: 'item'
+                    },
+                    items: {
+                        type: Array,
+                        value: [],
+                        notify: false, // enable upward data flow,
+                        //readOnly: true, // prevent downward data flow
+                        observer: 'onItemsChanged'
+                    },
+                    filter: {
+                        type: Function,
+                        value: undefined,
+                        notify: false, // enable upward data flow,
+                        //readOnly: true, // prevent downward data flow
+                        observer: 'onFilterChanged'
+                    },
+                    filteredItemCount: {
+                        type: Number,
+                        value: 0,
+                        notify: true, // enable upward data flow,
+                        readOnly: true, // prevent downward data flow
+                    }
+                };
+            }
+
+            // behaviors such as in iron-list any useful?
+
+            /**
+             *
+             */
+            ready() {
+                super.ready();
+                this.scrollOffset = 0;
+                this.filteredItems = [];
+                this.style['display'] = 'none !important';
+                this.templateInstances = [];
+                this.template = Polymer.Templatize.templatize( this.querySelector( 'template' ), this, {
+                    parentModel: true,
+                    instanceProps: { [this.as] : true }, // properties that are excluded from forwarding
+                    //forwardHostProp: ( property, value ) => this.templateInstances.forEach( instance => instance.forwardHostProp( property, value ) ),
+                } );
+                this.listContainer = document.createElement( 'DIV' );
+                this.listContainer.dataset['type'] = HakunekoList.is;
+                this.listContainer.style['overflow-x'] = 'hidden';
+                this.listContainer.style['overflow-y'] = 'scroll';
+                this.listContainer.className = this.className;
+                this.parentNode.appendChild( this.listContainer );
+                this.parentNode.insertBefore( this.listContainer, this );
+                this.className = undefined;
+                this.removeAttribute( 'class' );
+            }
+
+            /**
+             *
+             */
+            onItemsChanged() {
+                this.onChange();
+            }
+
+            /**
+             *
+             */
+            onFilterChanged() {
+                this.onChange();
+            }
+
+            /**
+             *
+             */
+            onChange() {
+                this.filteredItems = this.getFilteredItems();
+                if( this.filteredItemCount !== this.filteredItems.length ) {
+                    // set new value and notify, even when property is set to readOnly=true
+                    this._setFilteredItemCount( this.filteredItems.length );
+                    this.scrollOffset = 0;
+                }
+                this.render();
+            }
+
+            /**
+             *
+             */
+            render() {
+                if( this.items instanceof Array && this.listContainer  )
+                {
+                    // https://docs.polymer-jp.org/2.0/docs/api/namespaces/Polymer.Templatize
+                    this.listContainer.innerHTML = ''; // clear list
+                    let renderItems = this.filteredItems; // this.filteredItems.slice( this.scrollOffset, this.scrollOffset + 25 );
+                    this.templateInstances = renderItems.map( model => new this.template( { [this.as]: model } ) );
+                    this.templateInstances.forEach( instance => this.listContainer.appendChild( instance.root ) );
+                }
+            }
+
+            /**
+             *
+             */
+            getFilteredItems() {
+                if( this.items instanceof Array )
+                {
+                    if( this.filter instanceof Function ) {
+                        return this.items.filter( this.filter );
+                    } else {
+                        return this.items;
+                    }
+                }
+                return [];
+            }
+        }
+        window.customElements.define(HakunekoList.is, HakunekoList);
+    </script>
+
+</dom-module>
