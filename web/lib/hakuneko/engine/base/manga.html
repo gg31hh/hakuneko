@@ -128,12 +128,14 @@
                         if( error ) {
                             reject( error );
                         } else {
+                            // TODO: update known chapters in bookmark
                             resolve( chapters );
                         }
                     } );
                 } )
             } )
             .then( chapters => {
+                Engine.BookmarkManager.updateKnownChapters( this.connector.id, this.id, chapters );
                 let chapterFormat = Engine.Settings.chapterTitleFormat.value;
                 // de-serialize chapters into objects
                 this.chapterCache = chapters.map( chapter => {
