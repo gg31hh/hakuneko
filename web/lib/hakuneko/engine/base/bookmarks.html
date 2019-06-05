@@ -104,7 +104,7 @@
                 </table>
             </body>
             </html>`;
-            window.open( dataURL, '_blank', 'title=Boommark Import Results,center=true,width=800,height=600' );
+            window.open( dataURL, '_blank', 'title=Boomkmark Import Results,center=true,width=800,height=600' );
         }
 
         /**
@@ -120,6 +120,12 @@
                         throw new Error( 'Invalid bookmark list!' );
                     }
                     this.bookmarks = data;
+                    // migration for new property 'knownChapters'
+                    this.bookmarks.forEach( bookmark => {
+                        if( !bookmark['knownChapters'] ) {
+                            bookmark['knownChapters'] = [];
+                        }
+                    } );
                     this.bookmarks.sort( this.compareBookmarks );
                     document.dispatchEvent( new CustomEvent( EventListener.onBookmarksChanged, { detail: this.bookmarks } ) );
                     if( typeof( callback ) === typeof( Function ) ) {
@@ -163,13 +169,26 @@
         /**
          *
          */
+        _findIndex( connectorID, mangaID ) {
+            return this.bookmarks.findIndex( bookmark => bookmark.key.manga === mangaID && bookmark.key.connector === connectorID );
+        }
+
+        /**
+         *
+         */
+        getBookmark( connectorID, mangaID ) {
+            let index = this._findIndex( connectorID, mangaID );
+            return index > -1 ? this.bookmarks[index] : undefined;
+        }
+
+        /**
+         *
+         */
         addBookmark( manga ) {
             if( !manga || ! manga.connector ) {
                 return false;
             }
-            let index = this.bookmarks.findIndex( ( bookmark ) => {
-                return ( bookmark.key.manga === manga.id && bookmark.key.connector === manga.connector.id );
-            });
+            let index = this._findIndex( manga.connector.id, manga.id );
             if( index < 0 ) {
                 this.bookmarks.push( new Bookmark( manga ) );
                 this.bookmarks.sort( this.compareBookmarks );
@@ -183,11 +202,22 @@
          *
          */
         deleteBookmark( bookmark ) {
-            let index = this.bookmarks.findIndex( ( b ) => {
-                return ( b.key.manga === bookmark.key.manga && b.key.connector === bookmark.key.connector );
-            });
+            let index = this._findIndex( bookmark.key.connector, bookmark.key.manga );
             if( index > -1 ) {
                 this.bookmarks.splice( index, 1 );
+                this.saveProfile( 'default', undefined );
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         *
+         */
+        updateKnownChapters( connectorID, mangaID, chapters ) {
+            let bookmark = this.getBookmark( connectorID, mangaID );
+            if( bookmark ) {
+                bookmark.knownChapters = chapters.map( chapter => chapter.id );
                 this.saveProfile( 'default', undefined );
                 return true;
             }
