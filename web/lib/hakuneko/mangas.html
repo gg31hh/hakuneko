@@ -1,11 +1,11 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
-<!-- <link rel="import" href="../iron-list/iron-list.html"> -->
 <link rel="import" href="engine/base/enums.html">
 <link rel="import" href="connectors.html">
 <link rel="import" href="bookmarks.html">
 <link rel="import" href="status.html">
+<link rel="import" href="list.html">
 <link rel="import" href="theme.html">
 
 <dom-module id="hakuneko-mangas">
@@ -52,9 +52,7 @@
                 margin-bottom: 0.5em;
                 border: var(--manga-list-border);
                 background-color: var(--manga-list-background-color);
-                overflow-y: scroll;
                 white-space: nowrap;
-                list-style-type: none;
                 padding: 0.25em;
             }
             .manga {
@@ -121,22 +119,13 @@
                 </td>
             </tr>
         </table>
-        <ul class="list" >
-            <template is="dom-if" if="[[ existMangasForValidConnector(selectedConnector, mangaList.length) ]]">                        
-                <li class="notification">Manga list is loading or empty<br>Click &nbsp;<i class="fas fa-sync refresh" style="cursor: auto !important;"></i>&nbsp; button to update list</li>
-            </template>
-            <template is="dom-repeat" items="[[ mangaList ]]" filter="[[ filterMangas(mangaPattern) ]]" rendered-item-count="{{ mangaFilteredCount }}">
-                <li class$="manga [[ item.status ]] [[ getMangaClass(selectedManga, item.id) ]]" title$="[[ item.title ]]&#10;[[ item.connector.label ]]" on-click="onMangaClicked">[[ item.title ]]</li>
-            </template>
-        </ul>
-        <!-- https://github.com/PolymerElements/iron-list/issues/536 -->
-        <!--
-        <iron-list class="list" items="[[ filteredMangas(mangaList,mangaPattern) ]]">
+
+        <hakuneko-list class="list" items="[[ mangaList ]]" filter="[[ filterMangas(mangaPattern) ]]" filtered-item-count="{{ mangaFilteredCount }}">
             <template>
                 <div class$="manga [[ item.status ]] [[ getMangaClass(selectedManga, item.id) ]]" title$="[[ item.title ]]&#10;[[ item.connector.label ]]" on-click="onMangaClicked">[[ item.title ]]</div>
             </template>
-        </iron-list>
-        -->
+        </hakuneko-list>
+
         <div class="footer">
             <hakuneko-status id="status" message="Mangas: [[ mangaFilteredCount ]] / [[ mangaList.length ]]"></hakuneko-status>
         </div>
