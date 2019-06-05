@@ -69,10 +69,7 @@
             getBookmarkClass( manga, trigger ) {
                 if( manga ) {
                     if( manga.connector instanceof Connector ) {
-                        let index = this.bookmarkList.findIndex( bookmark => {
-                            return ( bookmark.key.manga === manga.id && bookmark.key.connector === manga.connector.id );
-                        } );
-                        if( index > -1 ) {
+                        if( Engine.BookmarkManager.getBookmark( manga.connector.id, manga.id ) ) {
                             return 'fa-minus-circle bookmarkDelete';
                         }
                         return 'fa-plus-circle bookmarkAdd';
@@ -89,10 +86,7 @@
             getBookmarkTitle( manga, trigger ) {
                 if( manga ) {
                     if( manga.connector instanceof Connector ) {
-                        let index = this.bookmarkList.findIndex( bookmark => {
-                            return ( bookmark.key.manga === manga.id && bookmark.key.connector === manga.connector.id );
-                        } );
-                        if( index > -1 ) {
+                        if( Engine.BookmarkManager.getBookmark( manga.connector.id, manga.id ) ) {
                             return 'Click to remove the selected manga from the bookmark list';
                         }
                         return 'Click to add the selected manga to the bookmark list';
@@ -109,9 +103,7 @@
             processBookmark( e ) {
                 let manga = this.selectedManga;
                 if( manga && manga.connector instanceof Connector ) {
-                    let bookmark = this.bookmarkList.find( b => {
-                        return ( b.key.manga === manga.id && b.key.connector === manga.connector.id );
-                    } );
+                    let bookmark = Engine.BookmarkManager.getBookmark( manga.connector.id, manga.id );
                     if( bookmark ) {
                         Engine.BookmarkManager.deleteBookmark( bookmark );
                     } else {
