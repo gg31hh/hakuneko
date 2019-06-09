@@ -313,8 +313,19 @@
              *
              */
             onBookmarksChanged( e ) {
-                if( this.selectedConnector.id === this.bookmarkConnectorID ) {
-                    this.onSelectedConnectorChanged( this.selectedConnector )
+                let selectedConnector = this.selectedConnector;
+                let selectedManga = this.selectedManga;
+                if( selectedConnector.id === this.bookmarkConnectorID ) {
+                    this.selectedConnector.getMangas( ( error, mangas ) => {
+                        // check if executing connector is still the selected connector (visible)
+                        if( selectedConnector === this.selectedConnector ) {
+                            this.set( 'mangaList', mangas );
+                            // deselect manga if no longer exist
+                            if( this.mangaList instanceof Array && !this.mangaList.find( manga => manga.equals( selectedManga ) ) ) {
+                                this.set( 'selectedManga', undefined );
+                            }
+                        }
+                    } );
                 }
             }
 
