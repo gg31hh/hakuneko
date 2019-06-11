@@ -39,7 +39,32 @@
         /**
          *
          */
+        _createMangaFromBookmark( bookmark ) {
+            return new Manga( this._getConnectorByID( bookmark.key.connector ), bookmark.key.manga, bookmark.title.manga );
+        }
+
+        /**
+         *
+         */
         updateMangas( callback ) {
+            if( confirm( 'Check for new chapters?\n\nThis may take a while and HakuNeko cannot be used until the operation is finished (or aborted)!' ) ) {
+                // get chapter list for bookmark
+                // wait for error or success
+                // determine which chapters are not yet known (new)
+                // add result to result list
+                // process next bookmark
+                let node = {
+                    current: undefined,
+                    next: undefined
+                };
+                let firstNode = node;
+                for(let bookmark of Engine.BookmarkManager.bookmarks) {
+                    let manga = this._createMangaFromBookmark( bookmark );
+                    let knownChapters = bookmark.knownChapters;
+                    
+                    console.log( manga.connector.label, manga.title, '=>', bookmark.knownChapters.length );
+                }
+            }
             this._getMangaList( callback );
         }
 
@@ -58,7 +83,7 @@
             // use a different approach to determine existence of manga, since it can be expected that
             // the bookmark list is way shorter than a manga list of a connector => no performance issues expected
             let mangas = Engine.BookmarkManager.bookmarks.map( bookmark => {
-                let manga = new Manga( this._getConnectorByID( bookmark.key.connector ), bookmark.key.manga, bookmark.title.manga );
+                let manga = this._createMangaFromBookmark( bookmark );
                 // determine if manga directory exist on disk
                 Engine.Storage.mangaDirectoryExist( manga )
                 .then( () => {
