@@ -120,10 +120,13 @@
                         throw new Error( 'Invalid bookmark list!' );
                     }
                     this.bookmarks = data;
-                    // migration for new property 'knownChapters'
+                    // migration for new properties 'knownChapters' and archived
                     this.bookmarks.forEach( bookmark => {
-                        if( !bookmark['knownChapters'] ) {
+                        if( bookmark['knownChapters'] === undefined ) {
                             bookmark['knownChapters'] = [];
+                        }
+                        if( bookmark['archived'] === undefined ) {
+                            bookmark['archived'] = false;
                         }
                     } );
                     this.bookmarks.sort( this.compareBookmarks );
@@ -151,6 +154,11 @@
          * Callback will be provided with an error (or null if no error).
          */
         saveProfile( profile, callback ) {
+            this.bookmarks.forEach( bookmark => {
+                if( bookmark.archived ) {
+                    bookmark.knownChapters = [];
+                }
+            } );
             Engine.Storage.saveConfig( 'bookmarks', this.bookmarks )
             .then( () => {
                 document.dispatchEvent( new CustomEvent( EventListener.onBookmarksChanged, { detail: this.bookmarks } ) );
@@ -216,7 +224,7 @@
          */
         updateKnownChapters( connectorID, mangaID, chapters ) {
             let bookmark = this.getBookmark( connectorID, mangaID );
-            if( bookmark ) {
+            if( bookmark && !bookmark.archived ) {
                 bookmark.knownChapters = chapters.map( chapter => chapter.id );
                 this.saveProfile( 'default', undefined );
                 return true;
