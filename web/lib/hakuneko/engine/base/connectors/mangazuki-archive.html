@@ -38,16 +38,9 @@
         }
 
         _getMangaList( callback ) {
-            let request = new Request( this.url + '/series/list', this.requestOptions );
-            this.fetchDOM( request, 'div#root div.container table.table tbody tr td:nth-of-type(2) a' )
+            this._getMangaListFromPages( [ '/series/list', '/raws/list' ] )
             .then( data => {
-                let mangaList = data.map( element => {
-                    return {
-                        id: this.getRootRelativeOrAbsoluteLink( element, request.url ),
-                        title: element.text.trim()
-                    };
-                } );
-                callback( null, mangaList );
+                callback( null, data );
             } )
             .catch( error => {
                 console.error( error, this );
