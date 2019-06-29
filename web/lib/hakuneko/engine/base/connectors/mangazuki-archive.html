@@ -10,6 +10,33 @@
             this.url    = 'https://beta.mangazuki.co';
         }
 
+        _getMangaListFromPages( mangaPageLinks, index ) {
+            // the index to determine which link from the given list shall be processed
+            index = index || 0;
+            let request = new Request( this.url + mangaPageLinks[ index ], this.requestOptions );
+            return this.fetchDOM( request, 'div#root div.container table.table tbody tr td:nth-of-type(2) a', 5 )
+            .then( data => {
+                // get the manga list for this certain page
+                let mangaList = data.map( element => {
+                    return {
+                        id: this.getRootRelativeOrAbsoluteLink( element, request.url ),
+                        // append 'RAW' text to title to distinguish between translated title with same name
+                        title: element.text.trim() + ( request.url.includes( '/raw' ) ? ' (RAW)' : '' )
+                    };
+                } );
+                // abort condition
+                if( index < mangaPageLinks.length - 1 ) {
+                    // the end of the list is not reached,
+                    // so we merge the manga list with the one from the next page
+                    return this._getMangaListFromPages( mangaPageLinks, index + 1 )
+                    .then( mangas => mangaList.concat( mangas ) );
+                } else {
+                    // the end of the list is reached, just return the manga list
+                    return Promise.resolve( mangaList );
+                }
+            } );
+        }
+
         _getMangaList( callback ) {
             let request = new Request( this.url + '/series/list', this.requestOptions );
             this.fetchDOM( request, 'div#root div.container table.table tbody tr td:nth-of-type(2) a' )
