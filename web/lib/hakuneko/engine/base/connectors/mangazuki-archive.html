@@ -49,7 +49,22 @@
         }
 
         _getChapterList( manga, callback ) {
-            callback( new Error( 'Not implemented!' ), undefined );
+            let request = new Request( this.url + manga.id, this.requestOptions );
+            this.fetchDOM( request, 'div#root div.column table.table tbody tr td:nth-of-type(2) a' )
+            .then( data => {
+                let chapterList = data.map( element => {
+                    return {
+                        id: this.getRootRelativeOrAbsoluteLink( element, request.url ),
+                        title: element.text.replace( manga.title, '' ).trim(),
+                        language: ''
+                    };
+                } );
+                callback( null, chapterList );
+            } )
+            .catch( error => {
+                console.error( error, manga );
+                callback( error, undefined );
+            } );
         }
 
         _getPageList( manga, chapter, callback ) {
