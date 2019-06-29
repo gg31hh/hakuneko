@@ -9,9 +9,23 @@
             this.tags   = [ 'webtoon', 'high-quality', 'multi-lingual', 'scanlation' ];
             this.url    = 'https://beta.mangazuki.co';
         }
-        
+
         _getMangaList( callback ) {
-            callback( new Error( 'Not implemented!' ), undefined );
+            let request = new Request( this.url + '/series/list', this.requestOptions );
+            this.fetchDOM( request, 'div#root div.container table.table tbody tr td:nth-of-type(2) a' )
+            .then( data => {
+                let mangaList = data.map( element => {
+                    return {
+                        id: this.getRootRelativeOrAbsoluteLink( element, request.url ),
+                        title: element.text.trim()
+                    };
+                } );
+                callback( null, mangaList );
+            } )
+            .catch( error => {
+                console.error( error, this );
+                callback( error, undefined );
+            } );
         }
 
         _getChapterList( manga, callback ) {
