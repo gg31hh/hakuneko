@@ -348,6 +348,10 @@
                                 if(warning) {
                                     warning.parentNode.removeChild(warning);
                                 }
+                                let signup = document.querySelector('div.signup-prompt');
+                                if(signup) {
+                                    signup.parentNode.removeChild(signup);
+                                }
                             }
                         `;
                         popup.eval(script);
