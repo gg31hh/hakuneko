@@ -1,11 +1,11 @@
-<link rel="import" href="ravensscans.html">
+<link rel="import" href="ReaderFront.html">
 
 <script>
 
     /**
      * 
      */
-    class RavensScansES extends RavensScans {
+    class RavensScansES extends ReaderFront {
 
         /**
          *
@@ -15,7 +15,8 @@
             super.id         = 'ravensscans-es';
             super.label      = 'RavensScans (Spanish)';
             this.tags        = [ 'manga', 'high-quality', 'spanish', 'scanlation' ];
-            //this.url         = 'https://api.ravens-scans.com';
+            this.url         = 'https://ravens-scans.com';
+            this.baseURL     = 'https://api.ravens-scans.com';
             this.language    = 'es';
         }
     }
