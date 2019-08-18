@@ -20,6 +20,12 @@
             window.HakuNeko = new HakuNeko(window);
             // TODO: remove backward compatibility alias 'Engine' when all references are set to HakuNeko engine
             window.Engine = window.HakuNeko;
+            
+            // TODO: remove stuff that requires various globals, incl. global HakuNeko engine
+            //new HistoryWorker();
+            Engine.Settings.loadProfile( 'default', undefined );
+            Engine.BookmarkManager.loadProfile( 'default', undefined );
+            Engine.ChaptermarkManager.loadChaptermarks( undefined );
         }
 
         function loadFrontend(option) {
