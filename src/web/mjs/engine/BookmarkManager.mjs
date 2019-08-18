@@ -43,7 +43,7 @@ export default class BookmarkManager {
      *
      */
     _showMergeResults( droppedHTML, existsHTML, addedHTML ) {
-        let dataURL = `data:text/html;utf8,<!DOCTYPE html>
+        let content = `<!DOCTYPE html>
         <html>
         <head>
             <meta charset="utf-8">
@@ -60,39 +60,39 @@ export default class BookmarkManager {
             <table style="font-family: monospace;">
                 <tbody style="color: red;">
                 <tr>
-                    <th colspan="2" style="font-size: 1.5em; font-weight: bold; text-align: left;">
-                        <hr><a name="dropped">UNSUPPORTED BOOKMARKS</a><hr>
+                    <th colspan="2" style="font-size: 1.5em; font-weight: bold; text-align: left; padding-top: 1em;">
+                        <hr><a name="dropped">UNSUPPORTED BOOKMARKS</a>
                     </th>
                 </tr>
                 <tr>
                     <th colspan="2" style="font-family: initial; text-align: left; padding-bottom: 1.5em;">
-                        List of all bookmarks that were not imported, because the websites are not yet supported by HakuNeko.
+                        List of all bookmarks that were not imported, because the websites are not yet supported by HakuNeko.<hr>
                     </th>
                 </tr>
                 ${ droppedHTML }
                 </tbody>
                 <tbody style="color: blue;">
                 <tr>
-                    <th colspan="2" style="font-size: 1.5em; font-weight: bold; text-align: left;">
-                        <hr><a name="exists">EXISTING BOOKMARKS</a><hr>
+                    <th colspan="2" style="font-size: 1.5em; font-weight: bold; text-align: left; padding-top: 1em;">
+                        <hr><a name="exists">EXISTING BOOKMARKS</a>
                     </th>
                 </tr>
                 <tr>
                     <th colspan="2" style="font-family: initial; text-align: left; padding-bottom: 1.5em;">
-                        List of all bookmarks that were not imported, because the bookmarks already exists in HakuNeko.
+                        List of all bookmarks that were not imported, because the bookmarks already exists in HakuNeko.<hr>
                     </th>
                 </tr>
                 ${ existsHTML }
                 </tbody>
                 <tbody style="color: green;">
                 <tr>
-                    <th colspan="2" style="font-size: 1.5em; font-weight: bold; text-align: left;">
-                        <hr><a name="added">ADDED BOOKMARKS</a><hr>
+                    <th colspan="2" style="font-size: 1.5em; font-weight: bold; text-align: left; padding-top: 1em;">
+                        <hr><a name="added">ADDED BOOKMARKS</a>
                     </th>
                 </tr>
                 <tr>
                     <th colspan="2" style="font-family: initial; text-align: left; padding-bottom: 1.5em;">
-                        List of all bookmarks that were imported successfully.
+                        List of all bookmarks that were imported successfully.<hr>
                     </th>
                 </tr>
                 ${ addedHTML }
@@ -100,6 +100,7 @@ export default class BookmarkManager {
             </table>
         </body>
         </html>`;
+        let dataURL = 'data:text/html;utf8,' + encodeURIComponent(content);
         window.open( dataURL, '_blank', 'title=Boommark Import Results,center=true,width=800,height=600' );
     }
 
