@@ -1,5 +1,5 @@
-import Manga from '../engine/Manga.mjs'
-import Chapter from '../engine/Chapter.mjs'
+import Manga from '../../engine/Manga.mjs'
+import Chapter from '../../engine/Chapter.mjs'
 
 /**
  * A special connector to show all mangas from a given local folder.

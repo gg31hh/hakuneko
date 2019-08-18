@@ -1,6 +1,6 @@
 import Connector from '../engine/Connector.mjs'
 
-export default class Template extends Connector {
+export default class Samples extends Connector {
 
     constructor() {
         super();

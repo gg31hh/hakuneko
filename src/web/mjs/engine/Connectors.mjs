@@ -1,5 +1,5 @@
-import BookmarkConnector from '../connectors/BookmarkConnector.mjs'
-import FolderConnector from '../connectors/FolderConnector.mjs'
+import BookmarkConnector from '../connectors/system/BookmarkConnector.mjs'
+import FolderConnector from '../connectors/system/FolderConnector.mjs'
 
 import AnimExtremist from '../connectors/AnimExtremist.mjs'
 /*
