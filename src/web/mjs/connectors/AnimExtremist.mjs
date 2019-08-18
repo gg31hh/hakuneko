@@ -24,6 +24,7 @@ export default class AnimExtremist extends Connector {
      *
      */
     _getMangaList( callback ) {
+        // ['/mangas.htm?ord=completados', '/mangas.htm?ord=todos']
         this.fetchDOM( this.url + '/mangas.htm?ord=todos', 'div#mangas div#manga a' )
         .then( data => {
             let mangaList = data.map( element => {
@@ -39,30 +40,6 @@ export default class AnimExtremist extends Connector {
             console.error( error, this );
             callback( error, undefined );
         } );
-        /*
-        let promises = ['/mangas.htm?ord=completados', '/mangas.htm?ord=todos'].map( page => {
-            return this.fetchDOM( this.url + page, 'div#mangas div#manga a' )
-            .then( data => {
-                let mangaList = data.map( element => {
-                    //this.cfMailDecrypt( element );
-                    return {
-                        id: this.getRelativeLink( element ),
-                        title: element.text.trim()
-                    };
-                } );
-                return Promise.resolve( mangaList );
-            } );
-        } );
-
-        Promise.all( promises )
-        .then( mangas => {
-            callback( null, [].concat( ... mangas ) );
-        } )
-        .catch( error => {
-            console.error( error, this );
-            callback( error, undefined );
-        } );
-        */
     }
 
     /**
