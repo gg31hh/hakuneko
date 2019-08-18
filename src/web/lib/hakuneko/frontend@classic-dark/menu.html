@@ -341,10 +341,13 @@
                         clearInterval(watchdog);
                     } else {
                         let script = `
-                            window.onbeforeunload = evt => undefined;
-                            let warning = document.querySelector('div.unsupported-browser');
-                            if(warning) {
-                                warning.parentNode.removeChild(warning);
+                            // loal scope for variable declaration
+                            {
+                                window.onbeforeunload = evt => undefined;
+                                let warning = document.querySelector('div.unsupported-browser');
+                                if(warning) {
+                                    warning.parentNode.removeChild(warning);
+                                }
                             }
                         `;
                         popup.eval(script);
