@@ -1,11 +1,11 @@
-<link rel="import" href="rawlh.html">
+<link rel="import" href="./templates/FlatManga.mjs">
 
 <script>
 
     /**
      * 
      */
-    class Manhwascan extends RawLH {
+    class Manhwascan extends FlatManga {
 
         /**
          *

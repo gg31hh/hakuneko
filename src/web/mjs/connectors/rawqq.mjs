@@ -1,11 +1,11 @@
-<link rel="import" href="rawlh.html">
+<link rel="import" href="./templates/FlatManga.mjs">
 
 <script>
 
     /**
      * 
      */
-    class RawQQ extends RawLH {
+    class RawQQ extends FlatManga {
 
         /**
          *
