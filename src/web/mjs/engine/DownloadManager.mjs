@@ -1,4 +1,4 @@
-import Jon from './Job.mjs'
+import DownloadJob from './DownloadJob.mjs'
 
 export default class DownloadManager {
 

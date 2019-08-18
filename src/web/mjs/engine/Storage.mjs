@@ -1,4 +1,5 @@
 import EbookGenerator from './EbookGenerator.mjs'
+import Chapter from './Chapter.mjs'
 
 export default class Storage {
 

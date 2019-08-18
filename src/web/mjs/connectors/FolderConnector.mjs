@@ -1,9 +1,13 @@
+import Manga from '../engine/Manga.mjs'
+import Chapter from '../engine/Chapter.mjs'
+
 /**
  * A special connector to show all mangas from a given local folder.
  * This connector does not implement the connector base class, because it operates different.
  */
 export default class FolderConnector {
 
+    // TODO: dependency injection for Engine.Settings, Engine.Storage
     constructor() {
         // Public members for usage in UI (mandatory)
         this.id       = 'folder';
@@ -18,7 +22,7 @@ export default class FolderConnector {
                 label: 'Manga Folder',
                 description: `A local directory from which mangas can be browsed within HakuNeko with the ${ this.label } connector`,
                 input: Input.directory,
-                value: Engine.Settings.baseDirectory.value
+                value: '' // Engine.Settings.baseDirectory.value
             }
         };
     }
@@ -62,7 +66,7 @@ export default class FolderConnector {
      * Replacement function for manga objects, since the behavior is quite different
      * The corresponding manga is bound to 'this'
      */
-        getChapters( callback ) {
+    getChapters( callback ) {
         let manga = this;
         if( !( manga instanceof Manga ) ) {
             return callback( new Error( 'This method must be used from a <Manga> object\'s context!' ), [] );
