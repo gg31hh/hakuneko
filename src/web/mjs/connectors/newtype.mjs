@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class NewType extends Connector {
+export default class NewType extends Connector {
 
         /**
          *
@@ -85,4 +85,3 @@
         }
     }
 
-</script>

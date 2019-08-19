@@ -1,11 +1,11 @@
-<link rel="import" href="./templates/FlatManga.mjs">
+import FlatManga from './templates/FlatManga.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class LHTranslation extends FlatManga {
+export default class LHTranslation extends FlatManga {
 
         /**
          *
@@ -23,4 +23,3 @@
         }
     }
 
-</script>

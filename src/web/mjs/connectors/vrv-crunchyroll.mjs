@@ -1,11 +1,11 @@
 <link rel="import" href="./vrv.html">
 
-<script>
+
 
     /**
      *
      */
-    class VRVCrunchyroll extends VRV {
+export default class VRVCrunchyroll extends VRV {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

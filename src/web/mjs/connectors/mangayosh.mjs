@@ -1,11 +1,11 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class MangaYosh extends WordPressMadara {
+export default class MangaYosh extends WordPressMadara {
 
         /**
          *
@@ -62,4 +62,3 @@
         }
     }
 
-</script>

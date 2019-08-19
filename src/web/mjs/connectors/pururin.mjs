@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Pururin extends Connector {
+export default class Pururin extends Connector {
 
         /**
          *
@@ -29,4 +29,3 @@
         }
     }
 
-</script>

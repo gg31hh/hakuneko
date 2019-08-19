@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class TwistedHelScans extends FoolSlide {
+export default class TwistedHelScans extends FoolSlide {
 
         /**
          *
@@ -38,4 +38,3 @@
         };
     }
 
-</script>

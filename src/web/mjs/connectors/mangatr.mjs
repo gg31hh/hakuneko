@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
-     * Very similar to Puzzmos, RawLH and MangaReaderCMS
+     * Seems to be customized FlatManga CMS
      */
-    class MangaTR extends Connector {
+export default class MangaTR extends Connector {
 
         /**
          *
@@ -121,4 +121,3 @@
         }
     }
 
-</script>

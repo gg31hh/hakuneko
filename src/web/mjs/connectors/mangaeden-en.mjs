@@ -1,11 +1,11 @@
 <link rel="import" href="mangaeden.html">
 
-<script>
+
 
     /**
      * 
      */
-    class MangaEdenEN extends MangaEden {
+export default class MangaEdenEN extends MangaEden {
 
         /**
          *
@@ -20,4 +20,3 @@
         }
     }
 
-</script>

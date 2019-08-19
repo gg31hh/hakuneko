@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * Template
      */
-    class MangaToon extends Connector {
+export default class MangaToon extends Connector {
 
         /**
          *
@@ -121,4 +121,3 @@
         }
     }
 
-</script>

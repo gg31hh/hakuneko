@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class S2Scans extends FoolSlide {
+export default class S2Scans extends FoolSlide {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

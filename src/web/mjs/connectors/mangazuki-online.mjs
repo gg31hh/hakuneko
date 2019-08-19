@@ -1,11 +1,11 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class MangaZukiOnline extends WordPressMadara {
+export default class MangaZukiOnline extends WordPressMadara {
 
         /**
          * Affiliates: Manga MangaZukiSite
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

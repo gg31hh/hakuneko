@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Toonkor extends Connector {
+export default class Toonkor extends Connector {
 
         /**
          *
@@ -94,4 +94,3 @@
         }
     }
 
-</script>

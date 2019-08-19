@@ -1,11 +1,11 @@
-<link rel="import" href="coreview.html">
+import CoreView from './templates/CoreView.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ShonenJumpPlus extends CoreView {
+export default class ShonenJumpPlus extends CoreView {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

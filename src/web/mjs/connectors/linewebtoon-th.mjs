@@ -1,11 +1,11 @@
 <link rel="import" href="linewebtoon.html">
 
-<script>
+
 
     /**
      *
      */
-    class LineWebtoonTH extends LineWebtoon {
+export default class LineWebtoonTH extends LineWebtoon {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

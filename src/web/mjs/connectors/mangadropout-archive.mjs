@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MangaDropOutArchive extends Connector {
+export default class MangaDropOutArchive extends Connector {
 
         /**
          *
@@ -117,4 +117,3 @@
         }
     }
 
-</script>

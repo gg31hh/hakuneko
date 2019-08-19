@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class SiberOwl extends Connector {
+export default class SiberOwl extends Connector {
 
         /**
          *
@@ -29,4 +29,3 @@
         }
     }
 
-</script>

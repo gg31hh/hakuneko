@@ -1,12 +1,12 @@
-<link rel="import" href="wp-emanga.html">
+import WordPressEManga from './templates/WordPressEManga.mjs'
 
-<script>
+
 
     /**
      * Is this really a WordPressEManga theme?
      * Same as Komiku
      */
-    class OtakuIndo extends WordPressEManga {
+export default class OtakuIndo extends WordPressEManga {
 
         /**
          *
@@ -62,4 +62,3 @@
         }
     }
 
-</script>

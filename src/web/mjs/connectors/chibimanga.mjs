@@ -1,8 +1,8 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
 
-    class ChibiManga extends WordPressMadara {
+
+export default class ChibiManga extends WordPressMadara {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

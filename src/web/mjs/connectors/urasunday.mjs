@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class UraSunday extends Connector {
+export default class UraSunday extends Connector {
 
         /**
          *
@@ -189,4 +189,3 @@
         }
     }
 
-</script>

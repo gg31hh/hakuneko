@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class EGScans extends Connector {
+export default class EGScans extends Connector {
 
         /**
          *
@@ -86,4 +86,3 @@
         }
     }
 
-</script>

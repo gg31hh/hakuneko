@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class DangolineNoFansub extends FoolSlide {
+export default class DangolineNoFansub extends FoolSlide {
 
         /**
          *
@@ -35,4 +35,4 @@
         }
     }
 
-</script>
+

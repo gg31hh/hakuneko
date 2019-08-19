@@ -1,11 +1,11 @@
 <link rel="import" href="truyenchon.html">
 
-<script>
+
 
     /**
      *
      */
-    class NetTruyen extends TruyenChon {
+export default class NetTruyen extends TruyenChon {
 
         /**
          * Same as TruyenChon
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

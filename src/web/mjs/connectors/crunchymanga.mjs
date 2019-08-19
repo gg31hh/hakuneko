@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class CrunchyManga extends Connector {
+export default class CrunchyManga extends Connector {
 
         /**
          *
@@ -312,4 +312,3 @@
          ***************************/
     }
 
-</script>

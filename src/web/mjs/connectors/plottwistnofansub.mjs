@@ -1,11 +1,11 @@
-<link rel="import" href="wp-cmr.html">
+import WordPressClarityMangaReader from './templates/WordPressClarityMangaReader.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class PlotTwistNoFansub extends WordPressClarityMangaReader {
+export default class PlotTwistNoFansub extends WordPressClarityMangaReader {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

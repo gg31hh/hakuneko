@@ -1,11 +1,11 @@
-<link rel="import" href="anyacg.html">
+import AnyACG from './templates/AnyACG.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Batoto extends AnyACG {
+export default class Batoto extends AnyACG {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

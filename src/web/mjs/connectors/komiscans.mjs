@@ -1,11 +1,11 @@
-<link rel="import" href="./genkan.html">
+import Genkan from './templates/Genkan.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class KomiScans extends Genkan {
+export default class KomiScans extends Genkan {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

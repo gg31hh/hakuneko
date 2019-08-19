@@ -1,12 +1,12 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * @author Neogeek
      * Aliases: MangaKakalot, MangaBat (prev. MangaSupa)
      */
-    class MangaNel extends Connector {
+export default class MangaNel extends Connector {
 
         /**
          *
@@ -126,4 +126,3 @@
         }
     }
 
-</script>

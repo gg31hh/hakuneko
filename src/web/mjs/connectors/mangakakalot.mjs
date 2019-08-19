@@ -1,11 +1,11 @@
 <link rel="import" href="manganel.html">
 
-<script>
+
 
     /**
      * 
      */
-    class MangaKakalot extends MangaNel {
+export default class MangaKakalot extends MangaNel {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

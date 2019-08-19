@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class PowerManga extends FoolSlide {
+export default class PowerManga extends FoolSlide {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

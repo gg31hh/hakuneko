@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class PUBLUS extends Connector {
+export default class PUBLUS extends Connector {
 
         /**
          *
@@ -267,4 +267,3 @@
          ****************************/
     }
 
-</script>

@@ -1,13 +1,3 @@
-/*
-Migration Guide:
-
-1. Rename file to classname + '.mjs'
-2. Replace HTML import with ES6 import => import Connetor from '../engine/Connector.mjs'
-3. remove opening and closing script tag
-4. prefix class with export default
-5. Include module into Connetors.mjs
-*/
-
 import Connector from '../engine/Connector.mjs'
 
 export default class AnimExtremist extends Connector {

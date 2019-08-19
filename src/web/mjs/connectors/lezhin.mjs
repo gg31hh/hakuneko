@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Lezhin extends Connector {
+export default class Lezhin extends Connector {
 
         /**
          *
@@ -235,4 +235,3 @@
         }
     }
 
-</script>

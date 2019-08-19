@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class SoManga extends Connector {
+export default class SoManga extends Connector {
 
         /**
          *
@@ -77,4 +77,3 @@
         }
     }
 
-</script>

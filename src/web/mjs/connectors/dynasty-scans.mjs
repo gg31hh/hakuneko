@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * @author Neogeek
      */
-    class DynastyScans extends Connector {
+export default class DynastyScans extends Connector {
 
         /**
          *
@@ -103,4 +103,3 @@
         }
     }
 
-</script>

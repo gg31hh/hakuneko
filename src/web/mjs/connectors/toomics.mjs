@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Toomics extends Connector {
+export default class Toomics extends Connector {
 
         /**
          *
@@ -125,4 +125,3 @@
         }
     }
 
-</script>

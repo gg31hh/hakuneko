@@ -1,11 +1,11 @@
-<link rel="import" href="comicake.html">
+import ComiCake from './templates/ComiCake.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class ChampionScans extends ComiCake {
+export default class ChampionScans extends ComiCake {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

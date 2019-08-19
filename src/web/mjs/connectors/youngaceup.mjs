@@ -1,11 +1,11 @@
 <link rel="import" href="./webace.html">
 
-<script>
+
 
     /**
      *
      */
-    class YoungAceUp extends WebAce {
+export default class YoungAceUp extends WebAce {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

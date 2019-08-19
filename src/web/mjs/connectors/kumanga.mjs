@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class KuManga extends Connector {
+export default class KuManga extends Connector {
 
         /**
          *
@@ -139,4 +139,3 @@
         }
     }
 
-</script>

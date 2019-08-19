@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class DaumWebtoon extends Connector {
+export default class DaumWebtoon extends Connector {
 
         /**
          *
@@ -124,4 +124,3 @@
         }
     }
 
-</script>

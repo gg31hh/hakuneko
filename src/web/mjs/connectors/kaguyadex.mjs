@@ -1,11 +1,11 @@
-<link rel="import" href="./genkan.html">
+import Genkan from './templates/Genkan.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Kaguyadex extends Genkan {
+export default class Kaguyadex extends Genkan {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

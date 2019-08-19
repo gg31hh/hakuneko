@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class HentaiCafe extends Connector {
+export default class HentaiCafe extends Connector {
 
         /**
          *
@@ -113,4 +113,3 @@
         }
     }
 
-</script>

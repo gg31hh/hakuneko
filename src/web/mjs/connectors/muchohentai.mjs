@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MuchoHentai extends Connector {
+export default class MuchoHentai extends Connector {
 
         /**
          *
@@ -91,4 +91,3 @@
         }
     }
 
-</script>

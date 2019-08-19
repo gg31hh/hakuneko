@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class KissDoujin extends Connector {
+export default class KissDoujin extends Connector {
 
         /**
          *
@@ -82,4 +82,3 @@
         }
     }
 
-</script>

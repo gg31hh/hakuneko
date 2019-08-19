@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MagaParkPublisher extends Connector {
+export default class MagaParkPublisher extends Connector {
 
         /**
          *
@@ -163,4 +163,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="wp-emanga.html">
+import WordPressEManga from './templates/WordPressEManga.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class PecintaKomik extends WordPressEManga {
+export default class PecintaKomik extends WordPressEManga {
 
         /**
          *
@@ -25,4 +25,3 @@
         }
     }
 
-</script>

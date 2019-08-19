@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class ItaScan extends Connector {
+export default class ItaScan extends Connector {
 
         /**
          *
@@ -103,4 +103,3 @@
         }
     }
 
-</script>

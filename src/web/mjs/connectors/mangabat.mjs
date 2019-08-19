@@ -1,11 +1,11 @@
 <link rel="import" href="manganel.html">
 
-<script>
+
 
     /**
      * Previously MangaSupa
      */
-    class MangaBat extends MangaNel {
+export default class MangaBat extends MangaNel {
 
         /**
          *
@@ -23,4 +23,3 @@
         }
     }
 
-</script>

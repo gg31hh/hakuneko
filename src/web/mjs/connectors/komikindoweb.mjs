@@ -1,11 +1,11 @@
-<link rel="import" href="wp-emanga.html">
+import WordPressEManga from './templates/WordPressEManga.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class KomikIndoWeb extends WordPressEManga {
+export default class KomikIndoWeb extends WordPressEManga {
 
         /**
          *
@@ -20,4 +20,3 @@
         }
     }
 
-</script>

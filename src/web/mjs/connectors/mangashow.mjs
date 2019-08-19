@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MangaShow extends Connector {
+export default class MangaShow extends Connector {
 
         /**
          * Maybe siilar to 11toon?
@@ -30,4 +30,3 @@
         }
     }
 
-</script>

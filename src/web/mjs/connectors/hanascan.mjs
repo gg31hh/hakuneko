@@ -1,11 +1,11 @@
-<link rel="import" href="./templates/FlatManga.mjs">
+import FlatManga from './templates/FlatManga.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class HanaScan extends FlatManga {
+export default class HanaScan extends FlatManga {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

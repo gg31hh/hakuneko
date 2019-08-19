@@ -1,11 +1,11 @@
 <link rel="import" href="./vrv.html">
 
-<script>
+
 
     /**
      *
      */
-    class VRVRoosterteeth extends VRV {
+export default class VRVRoosterteeth extends VRV {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

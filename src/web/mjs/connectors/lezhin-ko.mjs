@@ -1,11 +1,11 @@
 <link rel="import" href="lezhin.html">
 
-<script>
+
 
     /**
      *
      */
-    class LezhinKO extends Lezhin {
+export default class LezhinKO extends Lezhin {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

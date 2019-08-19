@@ -1,11 +1,11 @@
-<link rel="import" href="speedbinb.html">
+import SpeedBinb from './templates/SpeedBinb.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class BookLive extends SpeedBinb {
+export default class BookLive extends SpeedBinb {
 
         /**
          *
@@ -62,4 +62,3 @@
         }
     }
 
-</script>

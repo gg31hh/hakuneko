@@ -1,11 +1,11 @@
 <link rel="import" href="mangachan.html">
 
-<script>
+
 
     /**
      * Template: MangaChan
      */
-    class YaoiChan extends MangaChan {
+export default class YaoiChan extends MangaChan {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
 <link rel="import" href="mangafox.html">
 
-<script>
+
 
     /**
      *
      */
-    class MangaHere extends MangaFox {
+export default class MangaHere extends MangaFox {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

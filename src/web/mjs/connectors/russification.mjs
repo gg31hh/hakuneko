@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class Russification extends FoolSlide {
+export default class Russification extends FoolSlide {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

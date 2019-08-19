@@ -1,11 +1,11 @@
 <link rel="import" href="mangahub.html">
 
-<script>
+
 
     /**
      *
      */
-    class MangaFoxFun extends MangaHub {
+export default class MangaFoxFun extends MangaHub {
 
         /**
          *
@@ -20,4 +20,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
 <link rel="import" href="ninemanga.html">
 
-<script>
+
 
     /**
      * 
      */
-    class NineMangaEN extends NineManga {
+export default class NineMangaEN extends NineManga {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

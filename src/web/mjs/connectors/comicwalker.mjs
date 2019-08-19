@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ComicWalker extends Connector {
+export default class ComicWalker extends Connector {
 
         /**
          *
@@ -165,4 +165,3 @@
          ****************************/
     }
 
-</script>

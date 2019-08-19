@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class UnionMangas extends Connector {
+export default class UnionMangas extends Connector {
 
         /**
          *
@@ -113,4 +113,3 @@
         }
     }
 
-</script>

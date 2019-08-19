@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ValhallaScans extends Connector {
+export default class ValhallaScans extends Connector {
 
         /**
          *
@@ -84,4 +84,3 @@
         }
     }
 
-</script>

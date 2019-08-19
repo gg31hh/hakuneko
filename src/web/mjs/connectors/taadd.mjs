@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class TAADD extends Connector {
+export default class TAADD extends Connector {
 
         /**
          *
@@ -123,4 +123,3 @@
         }
     }
 
-</script>

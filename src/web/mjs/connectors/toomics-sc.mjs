@@ -1,11 +1,11 @@
 <link rel="import" href="toomics.html">
 
-<script>
+
 
     /**
      *
      */
-    class ToomicsSC extends Toomics {
+export default class ToomicsSC extends Toomics {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

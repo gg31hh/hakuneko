@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class KissMangaCDN extends Connector {
+export default class KissMangaCDN extends Connector {
 
         /**
          *
@@ -84,4 +84,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="coreview.html">
+import CoreView from './templates/CoreView.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ComicGardo extends CoreView {
+export default class ComicGardo extends CoreView {
 
         /**
          *
@@ -23,4 +23,3 @@
         }
     }
 
-</script>

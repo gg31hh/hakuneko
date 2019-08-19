@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class NeuManga extends Connector {
+export default class NeuManga extends Connector {
 
         /**
          *
@@ -80,4 +80,3 @@
         }
     }
 
-</script>

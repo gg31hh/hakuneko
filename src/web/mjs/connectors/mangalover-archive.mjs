@@ -1,11 +1,11 @@
-<link rel="import" href="wp-lightpro.html">
+import WordPressLightPro from './templates/WordPressLightPro.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MangaLoverArchive extends WordPressLightPro {
+export default class MangaLoverArchive extends WordPressLightPro {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

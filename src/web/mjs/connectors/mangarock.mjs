@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MangaRock extends Connector {
+export default class MangaRock extends Connector {
 
         /**
          *
@@ -186,4 +186,3 @@
         }
     }
 
-</script>

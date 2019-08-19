@@ -1,11 +1,11 @@
 <link rel="import" href="taadd.html">
 
-<script>
+
 
     /**
      * 
      */
-    class TenManga extends TAADD {
+export default class TenManga extends TAADD {
 
         /**
          *
@@ -26,4 +26,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
 <link rel="import" href="linewebtoon.html">
 
-<script>
+
 
     /**
      *
      */
-    class DongManManhua extends LineWebtoon {
+export default class DongManManhua extends LineWebtoon {
 
         /**
          *
@@ -49,4 +49,3 @@
         }
     }
 
-</script>

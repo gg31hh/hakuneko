@@ -1,11 +1,11 @@
-<link rel="import" href="speedbinb.html">
+import SpeedBinb from './templates/SpeedBinb.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ComicMeteor extends SpeedBinb {
+export default class ComicMeteor extends SpeedBinb {
 
         /**
          *
@@ -90,4 +90,3 @@
         }
     }
 
-</script>

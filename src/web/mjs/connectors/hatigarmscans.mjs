@@ -1,11 +1,11 @@
-<link rel="import" href="mangareadercms.html">
+import MangaReaderCMS from './templates/MangaReaderCMS.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class HatigarmScans extends MangaReaderCMS {
+export default class HatigarmScans extends MangaReaderCMS {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="mangareadercms.html">
+import MangaReaderCMS from './templates/MangaReaderCMS.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class KomikGue extends MangaReaderCMS {
+export default class KomikGue extends MangaReaderCMS {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

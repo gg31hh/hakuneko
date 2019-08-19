@@ -1,11 +1,11 @@
 <link rel="import" href="blogger-manga.html">
 
-<script>
+
 
     /**
      *
      */
-    class Gntai extends BloggerManga {
+export default class Gntai extends BloggerManga {
 
         /**
          *
@@ -58,4 +58,3 @@
         }
     }
 
-</script>

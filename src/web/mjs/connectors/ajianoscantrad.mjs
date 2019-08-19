@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class AjiaNoScantrad extends FoolSlide {
+export default class AjiaNoScantrad extends FoolSlide {
 
         /**
          *
@@ -21,4 +21,4 @@
         }
     }
 
-</script>
+

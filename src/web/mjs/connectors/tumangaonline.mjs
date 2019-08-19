@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class TuMangaOnline extends Connector {
+export default class TuMangaOnline extends Connector {
 
         /**
          *
@@ -141,4 +141,3 @@
         }
     }
 
-</script>

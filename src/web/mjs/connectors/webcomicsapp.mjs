@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class WebComicsApp extends Connector {
+export default class WebComicsApp extends Connector {
 
         /**
          *
@@ -75,4 +75,3 @@
         }
     }
 
-</script>

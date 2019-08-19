@@ -1,14 +1,14 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
-     *
+     * Seems to be customized FlatManga CMS
      */
-    class Puzzmos extends Connector {
+export default class Puzzmos extends Connector {
 
         /**
-         * Very similar to MangaTR, RawLH and MangaReaderCMS
+         * 
          */
         constructor() {
             super();
@@ -85,4 +85,3 @@
         }
     }
 
-</script>

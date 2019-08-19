@@ -1,11 +1,11 @@
 <link rel="import" href="publus.html">
 
-<script>
+
 
     /**
      *
      */
-    class GanGanOnline extends PUBLUS {
+export default class GanGanOnline extends PUBLUS {
 
         /**
          *
@@ -88,4 +88,3 @@
         }
     }
 
-</script>

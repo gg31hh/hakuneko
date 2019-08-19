@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MerakiScans extends Connector {
+export default class MerakiScans extends Connector {
 
         /**
          *
@@ -87,4 +87,3 @@
         }
     }
 
-</script>

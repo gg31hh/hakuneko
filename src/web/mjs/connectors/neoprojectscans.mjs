@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class NeoProjectScans extends FoolSlide {
+export default class NeoProjectScans extends FoolSlide {
 
         /**
          *
@@ -25,4 +25,4 @@
         }
     }
 
-</script>
+

@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class SeinagiAdultoFansub extends FoolSlide {
+export default class SeinagiAdultoFansub extends FoolSlide {
 
         /**
          *
@@ -21,4 +21,4 @@
         }
     }
 
-</script>
+

@@ -1,11 +1,11 @@
-<link rel="import" href="speedbinb.html">
+import SpeedBinb from './templates/SpeedBinb.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Ohtabooks extends SpeedBinb {
+export default class Ohtabooks extends SpeedBinb {
 
         /**
          *
@@ -94,4 +94,3 @@
         }
     }
 
-</script>

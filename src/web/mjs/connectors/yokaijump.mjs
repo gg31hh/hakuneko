@@ -1,11 +1,11 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class YokaiJump extends WordPressMadara {
+export default class YokaiJump extends WordPressMadara {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

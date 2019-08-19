@@ -1,11 +1,11 @@
-<link rel="import" href="coreview.html">
+import CoreView from './templates/CoreView.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class TonariNoYoungJump extends CoreView {
+export default class TonariNoYoungJump extends CoreView {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

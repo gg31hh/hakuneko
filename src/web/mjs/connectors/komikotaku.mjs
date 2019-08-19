@@ -1,11 +1,11 @@
 <link rel="import" href="kyuroku.html">
 
-<script>
+
 
     /**
      * 
      */
-    class KomikOtaku extends Kyuroku {
+export default class KomikOtaku extends Kyuroku {
 
         /**
          *
@@ -17,4 +17,3 @@
         }
     }
 
-</script>

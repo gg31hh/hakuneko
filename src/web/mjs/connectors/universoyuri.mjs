@@ -1,11 +1,11 @@
-<link rel="import" href="mangareadercms.html">
+import MangaReaderCMS from './templates/MangaReaderCMS.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class UniversoYuri extends MangaReaderCMS {
+export default class UniversoYuri extends MangaReaderCMS {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

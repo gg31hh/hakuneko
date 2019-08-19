@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * Base class for all VRV channels
      */
-    class VRV extends Connector {
+export default class VRV extends Connector {
 
         /**
          *
@@ -479,4 +479,3 @@
         }
     }
 
-</script>

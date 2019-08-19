@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Naver extends Connector {
+export default class Naver extends Connector {
 
         /**
          *
@@ -105,4 +105,3 @@
         }
     }
 
-</script>

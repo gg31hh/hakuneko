@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class Nightow extends Connector {
+export default class Nightow extends Connector {
 
         /**
          *
@@ -91,4 +91,4 @@
         }
     }
 
-</script>
+

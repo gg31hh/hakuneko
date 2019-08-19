@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MangaArab extends Connector {
+export default class MangaArab extends Connector {
 
         /**
          *
@@ -116,4 +116,3 @@
         }
     }
 
-</script>

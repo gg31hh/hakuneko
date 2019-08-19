@@ -1,11 +1,11 @@
-<link rel="import" href="mangareadercms.html">
+import MangaReaderCMS from './templates/MangaReaderCMS.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class LeoManga extends MangaReaderCMS {
+export default class LeoManga extends MangaReaderCMS {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

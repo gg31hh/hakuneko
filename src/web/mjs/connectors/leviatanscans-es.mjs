@@ -1,11 +1,11 @@
-<link rel="import" href="./genkan.html">
+import Genkan from './templates/Genkan.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class LeviatanScansES extends Genkan {
+export default class LeviatanScansES extends Genkan {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

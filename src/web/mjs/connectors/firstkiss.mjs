@@ -1,11 +1,11 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class FirstKiss extends WordPressMadara {
+export default class FirstKiss extends WordPressMadara {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

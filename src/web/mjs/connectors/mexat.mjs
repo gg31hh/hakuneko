@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Mexat extends Connector {
+export default class Mexat extends Connector {
 
         /**
          *
@@ -118,4 +118,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="wp-emanga.html">
+import WordPressEManga from './templates/WordPressEManga.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class BacaManga extends WordPressEManga {
+export default class BacaManga extends WordPressEManga {
 
         /**
          * limited access for indonesian (and surounding) regions only
@@ -47,4 +47,3 @@
         }
     }
 
-</script>

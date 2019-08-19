@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MangaHub extends Connector {
+export default class MangaHub extends Connector {
 
         /**
          *
@@ -160,4 +160,3 @@
         }
     }
 
-</script>

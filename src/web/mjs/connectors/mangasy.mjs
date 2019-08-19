@@ -1,11 +1,11 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class MangaSY extends WordPressMadara {
+export default class MangaSY extends WordPressMadara {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

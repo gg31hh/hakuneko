@@ -1,11 +1,11 @@
-<link rel="import" href="coreview.html">
+import CoreView from './templates/CoreView.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ShonenMagazinePocket extends CoreView {
+export default class ShonenMagazinePocket extends CoreView {
 
         /**
          *
@@ -25,4 +25,3 @@
         }
     }
 
-</script>

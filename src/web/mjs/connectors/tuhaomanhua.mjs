@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class TuhaoManhua extends Connector {
+export default class TuhaoManhua extends Connector {
 
         /**
          *
@@ -120,4 +120,3 @@
         }
     }
 
-</script>

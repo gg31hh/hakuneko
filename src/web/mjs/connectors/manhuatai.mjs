@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ManhuaTai extends Connector {
+export default class ManhuaTai extends Connector {
 
         /**
          *
@@ -83,4 +83,3 @@
         }
     }
 
-</script>

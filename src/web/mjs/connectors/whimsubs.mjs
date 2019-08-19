@@ -1,11 +1,11 @@
-<link rel="import" href="comicake.html">
+import ComiCake from './templates/ComiCake.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class WhimSubs extends ComiCake {
+export default class WhimSubs extends ComiCake {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

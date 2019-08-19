@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class JapanRead extends Connector {
+export default class JapanRead extends Connector {
 
         /**
          *
@@ -109,4 +109,3 @@
         }
     }
 
-</script>

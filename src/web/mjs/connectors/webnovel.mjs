@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class WebNovel extends Connector {
+export default class WebNovel extends Connector {
 
         /**
          *
@@ -129,4 +129,3 @@
         }
     }
 
-</script>

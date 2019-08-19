@@ -1,11 +1,11 @@
-<link rel="import" href="mangareadercms.html">
+import MangaReaderCMS from './templates/MangaReaderCMS.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class KomikZone extends MangaReaderCMS {
+export default class KomikZone extends MangaReaderCMS {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

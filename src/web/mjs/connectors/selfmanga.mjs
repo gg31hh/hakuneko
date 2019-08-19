@@ -1,11 +1,11 @@
 <link rel="import" href="readmanga.html">
 
-<script>
+
 
     /**
      * 
      */
-    class SelfManga extends ReadManga {
+export default class SelfManga extends ReadManga {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class LELScan extends Connector {
+export default class LELScan extends Connector {
 
         /**
          *
@@ -90,4 +90,3 @@
         }
     }
 
-</script>

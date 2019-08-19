@@ -1,11 +1,11 @@
-<link rel="import" href="coreview.html">
+import CoreView from './templates/CoreView.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class KurageBunch extends CoreView {
+export default class KurageBunch extends CoreView {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

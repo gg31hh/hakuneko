@@ -1,11 +1,11 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class HentaiRead extends WordPressMadara {
+export default class HentaiRead extends WordPressMadara {
 
         /**
          *
@@ -67,4 +67,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="foolslide.html">
+import FoolSlide from './templates/FoolSlide.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class DeathTollScans extends FoolSlide {
+export default class DeathTollScans extends FoolSlide {
 
         /**
          *
@@ -21,4 +21,4 @@
         }
     }
 
-</script>
+

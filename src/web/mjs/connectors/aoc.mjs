@@ -1,8 +1,8 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
 
-    class AOC extends WordPressMadara {
+
+export default class AOC extends WordPressMadara {
 
         /**
          *
@@ -16,4 +16,3 @@
         }
     }
 
-</script>

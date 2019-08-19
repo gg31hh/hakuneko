@@ -1,11 +1,11 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class MuchoDoujins extends WordPressMadara {
+export default class MuchoDoujins extends WordPressMadara {
 
         /**
          *
@@ -25,4 +25,3 @@
         }
     }
 
-</script>

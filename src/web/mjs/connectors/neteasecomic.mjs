@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class NetEaseComic extends Connector {
+export default class NetEaseComic extends Connector {
 
         /**
          *
@@ -122,4 +122,3 @@
         }
     }
 
-</script>

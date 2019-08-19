@@ -1,11 +1,11 @@
-<link rel="import" href="wp-lightpro.html">
+import WordPressLightPro from './templates/WordPressLightPro.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ReadHentaiManga extends WordPressLightPro {
+export default class ReadHentaiManga extends WordPressLightPro {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

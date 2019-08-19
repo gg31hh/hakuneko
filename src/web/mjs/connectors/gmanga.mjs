@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class GManga extends Connector {
+export default class GManga extends Connector {
 
         /**
          *
@@ -225,4 +225,3 @@
          *****************/
     }
 
-</script>

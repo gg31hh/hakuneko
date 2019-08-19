@@ -1,11 +1,11 @@
 <link rel="import" href="blogger-manga.html">
 
-<script>
+
 
     /**
      *
      */
-    class DoujinDesu extends BloggerManga {
+export default class DoujinDesu extends BloggerManga {
 
         /**
          *
@@ -106,4 +106,3 @@
          **************************/
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="coreview.html">
+import CoreView from './templates/CoreView.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ComicDays extends CoreView {
+export default class ComicDays extends CoreView {
 
         /**
          *
@@ -48,4 +48,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
 <link rel="import" href="publus.html">
 
-<script>
+
 
     /**
      *
      */
-    class ComicEarthStar extends PUBLUS {
+export default class ComicEarthStar extends PUBLUS {
 
         /**
          *
@@ -82,4 +82,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
 <link rel="import" href="mangayosh.html">
 
-<script>
+
 
     /**
      * 
      */
-    class DoujinYosh extends MangaYosh {
+export default class DoujinYosh extends MangaYosh {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

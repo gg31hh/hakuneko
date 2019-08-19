@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class MangaTube extends Connector {
+export default class MangaTube extends Connector {
 
         /**
          *
@@ -136,4 +136,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class TruyenChon extends Connector {
+export default class TruyenChon extends Connector {
 
         /**
          * Same as NetTruyen
@@ -118,4 +118,3 @@
         }
     }
 
-</script>

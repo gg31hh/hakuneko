@@ -1,11 +1,11 @@
-<link rel="import" href="wp-madara.html">
+import WordPressMadara from './templates/WordPressMadara.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class TritiniaScans extends WordPressMadara {
+export default class TritiniaScans extends WordPressMadara {
 
         /**
          *
@@ -47,4 +47,3 @@
         }
     }
 
-</script>

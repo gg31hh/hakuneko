@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class KoMBatch extends Connector {
+export default class KoMBatch extends Connector {
 
         /**
          *
@@ -107,4 +107,3 @@
         }
     }
 
-</script>

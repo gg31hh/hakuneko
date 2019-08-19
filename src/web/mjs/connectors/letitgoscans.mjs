@@ -1,11 +1,11 @@
-<link rel="import" href="comicake.html">
+import ComiCake from './templates/ComiCake.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class LetItGoScans extends ComiCake {
+export default class LetItGoScans extends ComiCake {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

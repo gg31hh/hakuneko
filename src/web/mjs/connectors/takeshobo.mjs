@@ -1,11 +1,11 @@
-<link rel="import" href="speedbinb.html">
+import SpeedBinb from './templates/SpeedBinb.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class TakeShobo extends SpeedBinb {
+export default class TakeShobo extends SpeedBinb {
 
         /**
          *
@@ -66,4 +66,3 @@
         }
     }
 
-</script>

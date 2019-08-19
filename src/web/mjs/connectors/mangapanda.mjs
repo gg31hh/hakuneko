@@ -1,11 +1,11 @@
 <link rel="import" href="mangareader.html">
 
-<script>
+
 
     /**
      * @author Neogeek
      */
-    class MangaPanda extends MangaReader {
+export default class MangaPanda extends MangaReader {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

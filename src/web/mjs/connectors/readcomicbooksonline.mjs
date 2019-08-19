@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class ReadComicBooksOnline extends Connector {
+export default class ReadComicBooksOnline extends Connector {
 
         /**
          *
@@ -92,4 +92,3 @@
         }
     }
 
-</script>

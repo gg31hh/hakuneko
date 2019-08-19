@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * @author Neogeek
      */
-    class JapScan extends Connector {
+export default class JapScan extends Connector {
 
         /**
          *
@@ -254,4 +254,3 @@
         }
     }
 
-</script>

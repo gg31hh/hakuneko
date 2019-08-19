@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class WeComics extends Connector {
+export default class WeComics extends Connector {
 
         /**
          *
@@ -97,7 +97,7 @@
     /**
      *
      */
-    class WeComics_Vendor {
+class WeComics_Vendor {
 
         static getPictureList( encrypted ) {
             let buff = encrypted.substr(0, 8);
@@ -294,4 +294,3 @@
 
     }
 
-</script>

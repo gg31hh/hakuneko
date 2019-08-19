@@ -1,11 +1,11 @@
-<link rel="import" href="ciayo.html">
+import Ciayo from './templates/Ciayo.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class CiayoID extends Ciayo {
+export default class CiayoID extends Ciayo {
 
         /**
          *
@@ -21,4 +21,3 @@
         }
     }
 
-</script>

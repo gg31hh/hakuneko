@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class NineAnime extends Connector {
+export default class NineAnime extends Connector {
 
         /**
          *
@@ -312,4 +312,3 @@
         }
     }
 
-</script>

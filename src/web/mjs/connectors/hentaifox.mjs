@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class HentaiFox extends Connector {
+export default class HentaiFox extends Connector {
 
         /**
          *
@@ -110,4 +110,3 @@
 
     }
 
-</script>

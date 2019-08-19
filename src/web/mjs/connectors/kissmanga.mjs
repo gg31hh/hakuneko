@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class KissManga extends Connector {
+export default class KissManga extends Connector {
 
         /**
          *
@@ -128,4 +128,3 @@
         }
     }
 
-</script>

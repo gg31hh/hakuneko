@@ -1,11 +1,11 @@
-<link rel="import" href="anyacg.html">
+import AnyACG from './templates/AnyACG.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MangaTensei extends AnyACG {
+export default class MangaTensei extends AnyACG {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

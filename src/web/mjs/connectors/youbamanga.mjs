@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class YouBaManga extends Connector {
+export default class YouBaManga extends Connector {
 
         /**
          *
@@ -116,4 +116,3 @@
         }
     }
 
-</script>

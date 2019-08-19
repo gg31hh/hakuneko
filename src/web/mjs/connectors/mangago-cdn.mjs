@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class MangaGoCDN extends Connector {
+export default class MangaGoCDN extends Connector {
 
         /**
          *
@@ -90,4 +90,3 @@
         }
     }
 
-</script>

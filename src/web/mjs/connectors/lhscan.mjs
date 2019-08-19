@@ -1,11 +1,11 @@
-<link rel="import" href="./templates/FlatManga.mjs">
+import FlatManga from './templates/FlatManga.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class LHScan extends FlatManga {
+export default class LHScan extends FlatManga {
 
         /**
          *
@@ -20,4 +20,3 @@
         }
     }
 
-</script>

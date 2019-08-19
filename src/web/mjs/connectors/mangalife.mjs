@@ -1,11 +1,11 @@
 <link rel="import" href="mangasee.html">
 
-<script>
+
 
     /**
      * 
      */
-    class MangaLife extends MangaSee {
+export default class MangaLife extends MangaSee {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

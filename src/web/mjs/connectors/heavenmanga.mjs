@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class HeavenManga extends Connector {
+export default class HeavenManga extends Connector {
 
         /**
          *
@@ -123,4 +123,3 @@
         }
     }
 
-</script>

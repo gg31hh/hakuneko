@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class DigitalTeam extends Connector {
+export default class DigitalTeam extends Connector {
 
         /**
          *
@@ -128,4 +128,3 @@
         }
     }
 
-</script>

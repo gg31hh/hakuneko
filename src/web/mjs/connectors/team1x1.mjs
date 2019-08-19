@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Team1x1 extends Connector {
+export default class Team1x1 extends Connector {
 
         /**
          *
@@ -102,4 +102,3 @@
         }
     }
 
-</script>

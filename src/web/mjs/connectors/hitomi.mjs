@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Hitomi extends Connector {
+export default class Hitomi extends Connector {
 
         /**
          *
@@ -77,4 +77,3 @@
         }
     }
 
-</script>

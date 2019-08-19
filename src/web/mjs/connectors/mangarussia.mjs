@@ -1,11 +1,11 @@
 <link rel="import" href="taadd.html">
 
-<script>
+
 
     /**
      * 
      */
-    class MangaRussia extends TAADD {
+export default class MangaRussia extends TAADD {
 
         /**
          *
@@ -27,4 +27,3 @@
         }
     }
 
-</script>

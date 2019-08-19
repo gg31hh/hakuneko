@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Tapas extends Connector {
+export default class Tapas extends Connector {
 
         /**
          *
@@ -106,4 +106,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
 <link rel="import" href="takeshobo.html">
 
-<script>
+
 
     /**
      *
      */
-    class GammaPlus extends TakeShobo {
+export default class GammaPlus extends TakeShobo {
 
         /**
          *
@@ -19,4 +19,3 @@
         }
     }
 
-</script>

@@ -1,11 +1,11 @@
-<link rel="import" href="wp-emanga.html">
+import WordPressEManga from './templates/WordPressEManga.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class MangaIndo extends WordPressEManga {
+export default class MangaIndo extends WordPressEManga {
 
         /**
          *
@@ -24,4 +24,3 @@
         }
     }
 
-</script>

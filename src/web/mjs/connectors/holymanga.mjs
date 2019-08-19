@@ -1,11 +1,11 @@
 <link rel="import" href="heavenmanga.html">
 
-<script>
+
 
     /**
      *
      */
-    class HolyManga extends HeavenManga {
+export default class HolyManga extends HeavenManga {
 
         /**
          *
@@ -19,4 +19,4 @@
         }
     }
 
-</script>
+

@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class GoldenMangas extends Connector {
+export default class GoldenMangas extends Connector {
 
         /**
          *
@@ -105,4 +105,3 @@
         }
     }
 
-</script>

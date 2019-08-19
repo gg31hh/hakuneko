@@ -1,11 +1,11 @@
 <link rel="import" href="mangasail.html">
 
-<script>
+
 
     /**
      * 
      */
-    class MangaTail extends MangaSail {
+export default class MangaTail extends MangaSail {
 
         /**
          *
@@ -22,4 +22,3 @@
         }
     }
 
-</script>

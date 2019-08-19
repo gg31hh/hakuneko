@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class GetManhwa extends Connector {
+export default class GetManhwa extends Connector {
 
         /**
          *
@@ -109,4 +109,3 @@
         }
     }
 
-</script>

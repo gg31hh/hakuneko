@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * 
      */
-    class ReadMNG extends Connector {
+export default class ReadMNG extends Connector {
 
         /**
          * Very similar to mangadoom
@@ -90,4 +90,3 @@
         }
     }
 
-</script>

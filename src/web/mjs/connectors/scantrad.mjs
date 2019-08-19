@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      * @author Neogeek
      */
-    class ScanTrad extends Connector {
+export default class ScanTrad extends Connector {
 
         /**
          *
@@ -87,4 +87,4 @@
         }
     }
 
-</script>
+

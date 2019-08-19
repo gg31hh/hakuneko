@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class PornComix extends Connector {
+export default class PornComix extends Connector {
 
         /**
          *
@@ -120,4 +120,3 @@
         }
     }
 
-</script>

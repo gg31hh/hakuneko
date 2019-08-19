@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class YesMangasBR extends Connector { // extends MangaHost ?
+export default class YesMangasBR extends Connector { // extends MangaHost ?
 
         /**
          *
@@ -115,4 +115,3 @@
         }
     }
 
-</script>

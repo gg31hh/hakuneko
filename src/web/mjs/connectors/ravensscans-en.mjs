@@ -1,11 +1,11 @@
 <link rel="import" href="ReaderFront.html">
 
-<script>
+
 
     /**
      * 
      */
-    class RavensScansEN extends ReaderFront {
+export default class RavensScansEN extends ReaderFront {
 
         /**
          *
@@ -21,4 +21,4 @@
         }
     }
 
-</script>
+

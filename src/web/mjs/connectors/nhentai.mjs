@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class NHentai extends Connector {
+export default class NHentai extends Connector {
 
         /**
          *
@@ -70,4 +70,3 @@
         }
     }
 
-</script>

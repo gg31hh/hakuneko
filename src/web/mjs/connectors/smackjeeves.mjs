@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class SmackJeeves extends Connector {
+export default class SmackJeeves extends Connector {
 
         /**
          *
@@ -129,4 +129,3 @@
         }
     }
 
-</script>

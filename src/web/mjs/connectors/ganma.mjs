@@ -1,11 +1,11 @@
-<link rel="import" href="../connector.html">
+import Connector from '../engine/Connector.mjs'
 
-<script>
+
 
     /**
      *
      */
-    class Ganma extends Connector {
+export default class Ganma extends Connector {
 
         /**
          *
@@ -98,4 +98,3 @@
         }
     }
 
-</script>
