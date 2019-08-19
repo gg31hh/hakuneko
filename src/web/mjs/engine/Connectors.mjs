@@ -77,6 +77,7 @@ import * from '../connectors/gmanga.mjs'
 import * from '../connectors/gntai.mjs'
 import * from '../connectors/godsrealmscan.mjs'
 import * from '../connectors/goldenmangas.mjs'
+import * from '../connectors/grafimanga.mjs'
 import * from '../connectors/hamtruyen.mjs'
 import * from '../connectors/hanascan.mjs'
 import * from '../connectors/happyteascans.mjs'
@@ -832,6 +833,7 @@ this.register( new AnimExtremist() );
         this.register( new DoujinYosh() );
         this.register( new FirstKiss() );
         this.register( new GodsRealmScan() );
+        this.register( new GrafiManga() );
         this.register( new HappyTeaScans() );
         this.register( new HentaiRead() );
         this.register( new HunterFansub() );
