@@ -1,11 +1,11 @@
-<link rel="import" href="publus.html">
+import CoreView from './templates/Publus.mjs'
 
 
 
     /**
      *
      */
-export default class ComicEarthStar extends PUBLUS {
+export default class ComicEarthStar extends Publus {
 
         /**
          *

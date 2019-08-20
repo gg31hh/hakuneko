@@ -1,11 +1,11 @@
-<link rel="import" href="publus.html">
+import CoreView from './templates/Publus.mjs'
 
 
 
     /**
      *
      */
-export default class GanGanOnline extends PUBLUS {
+export default class GanGanOnline extends Publus {
 
         /**
          *
