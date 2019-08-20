@@ -1,4 +1,4 @@
-<link rel="import" href="heavenmanga.html">
+import HeavenManga from './HeavenManga.mjs'
 
 
 

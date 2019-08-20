@@ -1,4 +1,4 @@
-import FlatManga from './templates/BloggerManga.mjs'
+import BloggerManga from './templates/BloggerManga.mjs'
 
 
 

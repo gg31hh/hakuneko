@@ -1,4 +1,4 @@
-<link rel="import" href="taadd.html">
+import TAADD from './TAADD.mjs'
 
 
 

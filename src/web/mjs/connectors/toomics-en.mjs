@@ -1,4 +1,4 @@
-<link rel="import" href="toomics.html">
+import Toomics from './templates/Toomics.mjs'
 
 
 

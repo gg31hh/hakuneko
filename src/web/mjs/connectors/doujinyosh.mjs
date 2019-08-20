@@ -1,4 +1,4 @@
-<link rel="import" href="mangayosh.html">
+import MangaYosh from './MangaYosh.mjs'
 
 
 

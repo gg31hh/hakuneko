@@ -1,4 +1,4 @@
-<link rel="import" href="takeshobo.html">
+import TakeShobo from './templates/TakeShobo.mjs'
 
 
 

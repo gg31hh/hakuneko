@@ -1,4 +1,4 @@
-import CoreView from './templates/Publus.mjs'
+import Publus from './templates/Publus.mjs'
 
 
 

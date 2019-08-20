@@ -2,9 +2,6 @@ import Connector from '../engine/Connector.mjs'
 
 export default class LineWebtoon extends Connector {
 
-    /**
-     *
-     */
     constructor() {
         super();
         super.id         = undefined;

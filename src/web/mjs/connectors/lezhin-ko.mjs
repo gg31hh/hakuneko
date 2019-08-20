@@ -1,4 +1,4 @@
-<link rel="import" href="lezhin.html">
+import Lezhin from './templates/Lezhin.mjs'
 
 
 

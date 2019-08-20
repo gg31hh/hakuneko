@@ -1,4 +1,4 @@
-<link rel="import" href="ninemanga.html">
+import NineManga from './templates/NineManga.mjs'
 
 
 
