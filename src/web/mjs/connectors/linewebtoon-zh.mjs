@@ -1,4 +1,4 @@
-<link rel="import" href="linewebtoon.html">
+import FlatManga from './templates/LineWebtoon.mjs'
 
 
 
