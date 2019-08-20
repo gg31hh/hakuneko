@@ -1,4 +1,4 @@
-<link rel="import" href="mangasail.html">
+import MangaSail from './MangaSail.mjs'
 
 
 

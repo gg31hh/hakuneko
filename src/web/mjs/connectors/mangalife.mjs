@@ -1,4 +1,4 @@
-<link rel="import" href="mangasee.html">
+import MangaSee from './MangaSee.mjs'
 
 
 

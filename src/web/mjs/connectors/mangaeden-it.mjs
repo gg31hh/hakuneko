@@ -1,4 +1,4 @@
-<link rel="import" href="mangaeden.html">
+import MangaEden from './templates/MangaEden.mjs'
 
 
 

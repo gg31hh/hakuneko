@@ -1,4 +1,4 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../../engine/Connector.mjs'
 
 export default class LineWebtoon extends Connector {
 

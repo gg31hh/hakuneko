@@ -1,4 +1,4 @@
-<link rel="import" href="./vrv.html">
+import VRV from './templates/VRV.mjs'
 
 
 

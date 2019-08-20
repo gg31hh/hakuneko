@@ -1,4 +1,4 @@
-<link rel="import" href="mangachan.html">
+import MangaChan from './MangaChan.mjs'
 
 
 

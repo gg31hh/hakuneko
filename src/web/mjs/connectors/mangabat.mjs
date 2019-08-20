@@ -1,4 +1,4 @@
-<link rel="import" href="manganel.html">
+import MangaNel from './MangaNel.mjs'
 
 
 

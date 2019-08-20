@@ -1,4 +1,4 @@
-<link rel="import" href="truyenchon.html">
+import TruyenChon from './TruyenChon.mjs'
 
 
 

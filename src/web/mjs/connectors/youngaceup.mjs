@@ -1,4 +1,4 @@
-<link rel="import" href="./webace.html">
+import WebAce from './WebAce.mjs'
 
 
 

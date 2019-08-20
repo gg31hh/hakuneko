@@ -1,4 +1,4 @@
-<link rel="import" href="mangatoon.html">
+import MangaToon from './templates/MangaToon.mjs'
 
 
 

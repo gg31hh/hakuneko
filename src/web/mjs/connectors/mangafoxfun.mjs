@@ -1,4 +1,4 @@
-<link rel="import" href="mangahub.html">
+import MangaHub from './MangaHub.mjs'
 
 
 

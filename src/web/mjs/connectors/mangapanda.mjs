@@ -1,4 +1,4 @@
-<link rel="import" href="mangareader.html">
+import MangaReader from './MangaReader.mjs'
 
 
 

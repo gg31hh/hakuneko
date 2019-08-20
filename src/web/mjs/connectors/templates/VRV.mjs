@@ -1,10 +1,5 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../../engine/Connector.mjs'
 
-
-
-    /**
-     * Base class for all VRV channels
-     */
 export default class VRV extends Connector {
 
         /**

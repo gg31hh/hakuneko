@@ -1,4 +1,4 @@
-<link rel="import" href="readmanga.html">
+import ReadManga from './ReadManga.mjs'
 
 
 

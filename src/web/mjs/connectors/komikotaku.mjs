@@ -1,9 +1,9 @@
-<link rel="import" href="kyuroku.html">
+import Kyuroku from './Kyuroku.mjs'
 
 
 
     /**
-     * 
+     * Alias for backward compatibility
      */
 export default class KomikOtaku extends Kyuroku {
 

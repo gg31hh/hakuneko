@@ -1,4 +1,4 @@
-<link rel="import" href="mangafox.html">
+import MangaFox from './MangaFox.mjs'
 
 
 

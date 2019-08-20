@@ -1,4 +1,4 @@
-<link rel="import" href="ReaderFront.html">
+import ReaderFront from './templates/ReaderFront.mjs'
 
 
 
