@@ -1,4 +1,4 @@
-<link rel="import" href="blogger-manga.html">
+import FlatManga from './templates/BloggerManga.mjs'
 
 
 
