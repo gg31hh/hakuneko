@@ -960,7 +960,7 @@ export default class Connectors {
 
     async register(files) {
         try {
-            await Promise.all(files.forEach(async file => {
+            for(let file of files) {
                 let module = await import(file);
                 let connector = new module.default();
                 if(this._list.find(c => c.id === connector.id)) {
@@ -969,7 +969,7 @@ export default class Connectors {
                     this._list.push(connector);
                     console.log('Registered:', connector);
                 }
-            }));
+            };
             this._list.sort( ( a, b ) => {
                 return ( a.label.toLowerCase() < b.label.toLowerCase() ? -1 : 1 );
             } );
