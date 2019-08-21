@@ -27,7 +27,7 @@ export default class HakuNeko {
         this._chaptermarkManager = new ChaptermarkManager();
         this._downloadManager = new DownloadManager();
         this._request = new Request();
-        this._connectorList = new Connectors(this._request).list;
+        this._connectors = new Connectors(this._request);
         this._settings = new Settings();
         this._storage = new Storage();
     }
@@ -73,7 +73,7 @@ export default class HakuNeko {
     }
 
     get Connectors() {
-        return this._connectorList;
+        return this._connectors.list;
     }
 
     get DownloadManager() {

@@ -1,7 +1,7 @@
-import BookmarkConnector from '../connectors/system/BookmarkConnector.mjs'
-import FolderConnector from '../connectors/system/FolderConnector.mjs'
+//import BookmarkConnector from '../connectors/system/BookmarkConnector.mjs'
+//import FolderConnector from '../connectors/system/FolderConnector.mjs'
 
-import AnimExtremist from '../connectors/AnimExtremist.mjs'
+//import AnimExtremist from '../connectors/AnimExtremist.mjs'
 /*
 import * from '../connectors/11toon.mjs'
 import * from '../connectors/8muses.mjs'
@@ -449,16 +449,16 @@ export default class Connectors {
         request.registerProtocol( 'connector', this._protocolHandler.bind( this ) );
         
         // raw list of all available connectors
-        this.list = [];
+        this._list = [];
 
-        // #region System
-        this.register( new BookmarkConnector() );
-        this.register( new FolderConnector() );
-        // #endregion
-
-this.register( new AnimExtremist() );
+        let files = [
+            '../connectors/system/BookmarkConnector.mjs',
+            '../connectors/system/FolderConnector.mjs',
+            '../connectors/AnimExtremist.mjs',
+            '../connectors/AnimExtremist.mjs'
+        ];
+        this.register(files);
 /*
-
         this.register( new ActionManga() );
         this.register( new AnimExtremist() );
         this.register( new Batoto() );
@@ -954,20 +954,34 @@ this.register( new AnimExtremist() );
 */
     }
 
-    register( connector ) {
-        // determine if connector is already registered
-        if( this.list.find( c => c.id === connector.id ) ) {
-            return;
+    get list() {
+        return this._list;
+    }
+
+    async register(files) {
+        try {
+            await Promise.all(files.forEach(async file => {
+                let module = await import(file);
+                let connector = new module.default();
+                if(this._list.find(c => c.id === connector.id)) {
+                    console.warn(`The connector "${connector.label}" with ID "${connector.id}" is already registered`);
+                } else {
+                    this._list.push(connector);
+                    console.log('Registered:', connector);
+                }
+            }));
+            this._list.sort( ( a, b ) => {
+                return ( a.label.toLowerCase() < b.label.toLowerCase() ? -1 : 1 );
+            } );
+            console.log('All:', this._list);
+        } catch(error) {
+            console.warn(`Failed to load connector`, error);
         }
-        this.list.push( connector );
-        this.list.sort( ( a, b ) => {
-            return ( a.label.toLowerCase() < b.label.toLowerCase() ? -1 : 1 );
-        } );
     }
     
     _protocolHandler( request, callback ) {
         let uri = new URL( request.url );
-        this.list.find( connector => connector.id === uri.hostname ).handleConnectorURI( uri )
+        this._list.find( connector => connector.id === uri.hostname ).handleConnectorURI( uri )
         .then( buffer => callback( buffer ) )
         .catch( error => {
             //console.error( error, payload );
