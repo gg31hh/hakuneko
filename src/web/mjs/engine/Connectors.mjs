@@ -9,7 +9,6 @@ export default class Connectors {
     constructor(request) {
         request.registerProtocol( 'connector', this._protocolHandler.bind( this ) );
         this._list = [];
-        this.initialize();
     }
 
     async initialize() {
@@ -24,12 +23,16 @@ export default class Connectors {
     async register(files) {
         try {
             for(let file of files) {
-                let module = await import(file);
-                let connector = new module.default();
-                if(this._list.find(c => c.id === connector.id)) {
-                    console.warn(`The connector "${connector.label}" with ID "${connector.id}" is already registered`);
-                } else {
-                    this._list.push(connector);
+                try {
+                    let module = await import(file);
+                    let connector = new module.default();
+                    if(this._list.find(c => c.id === connector.id)) {
+                        console.warn(`The connector "${connector.label}" with ID "${connector.id}" is already registered`);
+                    } else {
+                        this._list.push(connector);
+                    }
+                } catch(error) {
+                    console.warn(`Failed to load connector "${file}"`, error);
                 }
             };
             this._list.sort( ( a, b ) => {

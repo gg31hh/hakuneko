@@ -56,6 +56,10 @@ export default class HakuNeko {
         context.ClipboardConnector = ClipboardConnector;
     }
 
+    async initialize() {
+        await this._connectors.initialize();
+    }
+
     get Blacklist() {
         return this._blacklist;
     }
