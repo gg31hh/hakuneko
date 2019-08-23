@@ -1,24 +1,21 @@
-import WordPressEManga from './templates/WordPressEManga.mjs'
+import WordPressEManga from './templates/WordPressEManga.mjs';
 
-
-
-    /**
-     * 
-     */
+/**
+ *
+ */
 export default class Ngomik extends WordPressEManga {
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'ngomik';
-            super.label      = 'Ngomik';
-            this.tags        = [ 'manga', 'indonesian' ];
-            this.url         = 'https://ngomik.in';
-            this.path        = '/daftar-manga/?list';
+    /**
+     *
+     */
+    constructor() {
+        super();
+        super.id = 'ngomik';
+        super.label = 'Ngomik';
+        this.tags = [ 'manga', 'indonesian' ];
+        this.url = 'https://ngomik.in';
+        this.path = '/daftar-manga/?list';
 
-            this.queryChapters = 'div.bxcl ul li div.lch a';
-        }
+        this.queryChapters = 'div.bxcl ul li div.lch a';
     }
-
+}

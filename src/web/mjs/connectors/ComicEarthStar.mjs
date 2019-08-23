@@ -1,42 +1,40 @@
-import Publus from './templates/Publus.mjs'
+import Publus from './templates/Publus.mjs';
 
-
+/**
+ *
+ */
+export default class ComicEarthStar extends Publus {
 
     /**
      *
      */
-export default class ComicEarthStar extends Publus {
+    constructor() {
+        super();
+        super.id = 'comicearthstar';
+        super.label = 'コミック　アース・スター (Comic Earth Star)';
+        this.tags = [ 'manga', 'japanese' ];
+        this.url = 'https://www.comic-earthstar.jp';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'comicearthstar';
-            super.label      = 'コミック　アース・スター (Comic Earth Star)';
-            this.tags        = [ 'manga', 'japanese' ];
-            this.url         = 'https://www.comic-earthstar.jp';
-        }
-
-        /**
-         * 
-         */
-        _getMangaFromURI( uri ) {
-            let id = uri.pathname.match( /\/([^\/]+)\/?$/ )[1];
-            let request = new Request( this.url + '/json/contents/detail/' + id + '.json', this.requestOptions );
-            return this.fetchJSON( request )
+    /**
+     *
+     */
+    _getMangaFromURI( uri ) {
+        let id = uri.pathname.match( /\/([^\/]+)\/?$/ )[1];
+        let request = new Request( this.url + '/json/contents/detail/' + id + '.json', this.requestOptions );
+        return this.fetchJSON( request )
             .then( data => {
                 let title = data.categorys.comic_category_title;
                 return Promise.resolve( new Manga( this, id, title ) );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            let request = new Request( this.url + '/json/contents/top/default.json', this.requestOptions );
-            this.fetchJSON( request )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        let request = new Request( this.url + '/json/contents/top/default.json', this.requestOptions );
+        this.fetchJSON( request )
             .then( data => {
                 let ongoingList = data.serial_comics.map( comic => {
                     return {
@@ -57,14 +55,14 @@ export default class ComicEarthStar extends Publus {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            let request = new Request( this.url + '/json/contents/detail/' + manga.id + '.json', this.requestOptions );
-            this.fetchJSON( request )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        let request = new Request( this.url + '/json/contents/detail/' + manga.id + '.json', this.requestOptions );
+        this.fetchJSON( request )
             .then( data => {
                 let chapterList = data.episodes.map( episode => {
                     return {
@@ -79,6 +77,5 @@ export default class ComicEarthStar extends Publus {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

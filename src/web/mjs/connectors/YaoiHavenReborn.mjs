@@ -1,28 +1,26 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
+/**
+ *
+ */
+export default class YaoiHavenReborn extends Connector {
 
     /**
      *
      */
-export default class YaoiHavenReborn extends Connector {
+    constructor() {
+        super();
+        super.id = 'yaoihavenreborn';
+        super.label = 'Yaoi Haven Reborn';
+        this.tags = [ 'hentai', 'english' ];
+        this.url = 'https://www.yaoihavenreborn.com/';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'yaoihavenreborn';
-            super.label      = 'Yaoi Haven Reborn';
-            this.tags        = [ 'hentai', 'english' ];
-            this.url         = 'https://www.yaoihavenreborn.com/';
-        }
-
-        /**
-         * Overwrite base function to get manga from clipboard link.
-         */
-        _getMangaFromURI( uri ) {
-            return Promise.resolve()
+    /**
+     * Overwrite base function to get manga from clipboard link.
+     */
+    _getMangaFromURI( uri ) {
+        return Promise.resolve()
             .then( () => {
                 if( !uri.pathname.startsWith( '/doujinshi' ) ) {
                     throw new Error( 'Only doujins are supported, galleries cannot be downloaded!' );
@@ -34,17 +32,17 @@ export default class YaoiHavenReborn extends Connector {
                 let title = data[0].innerText.trim();
                 return Promise.resolve( new Manga( this, id, title ) );
             } );
-        }
+    }
 
-        // 
+    //
 
-        /**
-         *
-         */
-        _getMangaListFromPages( mangaPageLinks, index ) {
-            index = index || 0;
-            let request = new Request( mangaPageLinks[ index ], this.requestOptions );
-            return this.fetchDOM( request, 'div.container div.card-body div.row div.card div.card-header a', 5 )
+    /**
+     *
+     */
+    _getMangaListFromPages( mangaPageLinks, index ) {
+        index = index || 0;
+        let request = new Request( mangaPageLinks[ index ], this.requestOptions );
+        return this.fetchDOM( request, 'div.container div.card-body div.row div.card div.card-header a', 5 )
             .then( data => {
                 let mangaList = data.map( element => {
                     return {
@@ -54,19 +52,19 @@ export default class YaoiHavenReborn extends Connector {
                 } );
                 if( index < mangaPageLinks.length - 1 ) {
                     return this._getMangaListFromPages( mangaPageLinks, index + 1 )
-                    .then( mangas => mangaList.concat( mangas ) );
+                        .then( mangas => mangaList.concat( mangas ) );
                 } else {
                     return Promise.resolve( mangaList );
                 }
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            let request = new Request( this.url + '/doujinshi/all-doujinshi?page=', this.requestOptions );
-            this.fetchDOM( request, 'div.container div.card-header nav.navigation ul.pagination li.page-item a:not([rel])' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        let request = new Request( this.url + '/doujinshi/all-doujinshi?page=', this.requestOptions );
+        this.fetchDOM( request, 'div.container div.card-header nav.navigation ul.pagination li.page-item a:not([rel])' )
             .then( data => {
                 let pageCount = parseInt( data.pop().text.trim() );
                 let pageLinks = [...( new Array( pageCount ) ).keys()].map( page => request.url + ( page + 1 ) );
@@ -79,13 +77,13 @@ export default class YaoiHavenReborn extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            Promise.resolve()
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        Promise.resolve()
             .then( data => {
                 let chapterList = [ {
                     id: manga.id,
@@ -98,14 +96,14 @@ export default class YaoiHavenReborn extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            let request = new Request( this.url + manga.id, this.requestOptions );
-            this.fetchDOM( request.url, 'div.container div.card-body source.img-fluid' )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        let request = new Request( this.url + manga.id, this.requestOptions );
+        this.fetchDOM( request.url, 'div.container div.card-body source.img-fluid' )
             .then( data => {
                 let pageList = data.map( element => this.getAbsolutePath( element.dataset[ 'src' ] || element, request.url ) );
                 callback( null, pageList );
@@ -114,6 +112,5 @@ export default class YaoiHavenReborn extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

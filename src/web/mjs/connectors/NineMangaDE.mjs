@@ -1,23 +1,20 @@
-import NineManga from './templates/NineManga.mjs'
+import NineManga from './templates/NineManga.mjs';
 
-
-
-    /**
-     * 
-     */
+/**
+ *
+ */
 export default class NineMangaDE extends NineManga {
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'ninemanga-de';
-            super.label      = 'NineMangaDE';
-            this.tags        = [ 'manga', 'german' ];
-            this.url         = 'http://de.ninemanga.com';
+    /**
+     *
+     */
+    constructor() {
+        super();
+        super.id = 'ninemanga-de';
+        super.label = 'NineMangaDE';
+        this.tags = [ 'manga', 'german' ];
+        this.url = 'http://de.ninemanga.com';
 
-            this.pageCount = 50;
-        }
+        this.pageCount = 50;
     }
-
+}

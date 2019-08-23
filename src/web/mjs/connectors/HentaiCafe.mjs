@@ -1,43 +1,41 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
+/**
+ *
+ */
+export default class HentaiCafe extends Connector {
 
     /**
      *
      */
-export default class HentaiCafe extends Connector {
+    constructor() {
+        super();
+        super.id = 'hentaicafe';
+        super.label = 'HentaiCafe';
+        this.tags = [ 'hentai', 'english' ];
+        this.url = 'https://hentai.cafe';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'hentaicafe';
-            super.label      = 'HentaiCafe';
-            this.tags        = [ 'hentai', 'english' ];
-            this.url         = 'https://hentai.cafe';
-        }
-
-        /**
-         * 
-         */
-        _getMangaFromURI( uri ) {
-            let request = new Request( uri.href, this.requestOptions );
-            return this.fetchDOM( request, 'div.entry-content > div.last > h3' )
+    /**
+     *
+     */
+    _getMangaFromURI( uri ) {
+        let request = new Request( uri.href, this.requestOptions );
+        return this.fetchDOM( request, 'div.entry-content > div.last > h3' )
             .then( data => {
                 let id = uri.pathname + uri.search;
                 let title = data[0].textContent.trim();
                 return Promise.resolve( new Manga( this, id, title ) );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaListFromPages( mangaPageLinks, index ) {
-            index = index || 0;
-            let request = new Request( mangaPageLinks[ index ], this.requestOptions );
-            return this.fetchDOM( request, 'article.post div.entry-wrap header.entry-header h2.entry-title a', 5 )
+    /**
+     *
+     */
+    _getMangaListFromPages( mangaPageLinks, index ) {
+        index = index || 0;
+        let request = new Request( mangaPageLinks[ index ], this.requestOptions );
+        return this.fetchDOM( request, 'article.post div.entry-wrap header.entry-header h2.entry-title a', 5 )
             .then( data => {
                 let mangaList = data.map( element => {
                     return {
@@ -47,19 +45,19 @@ export default class HentaiCafe extends Connector {
                 } );
                 if( index < mangaPageLinks.length - 1 ) {
                     return this._getMangaListFromPages( mangaPageLinks, index + 1 )
-                    .then( mangas => mangaList.concat( mangas ) );
+                        .then( mangas => mangaList.concat( mangas ) );
                 } else {
                     return Promise.resolve( mangaList );
                 }
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            let request = new Request( this.url, this.requestOptions );
-            this.fetchDOM( request, 'div.x-pagination ul li a.last' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        let request = new Request( this.url, this.requestOptions );
+        this.fetchDOM( request, 'div.x-pagination ul li a.last' )
             .then( data => {
                 let pageCount = parseInt( data[0].text.trim() );
                 let pageLinks = [...( new Array( pageCount ) ).keys()].map( page => this.url + '/page/' + ( page + 1 ) + '/' );
@@ -72,14 +70,14 @@ export default class HentaiCafe extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            let request = new Request( this.url + manga.id, this.requestOptions );
-            this.fetchDOM( request, 'div.entry-content > div.x-column > p > a[title="Read"]' )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        let request = new Request( this.url + manga.id, this.requestOptions );
+        this.fetchDOM( request, 'div.entry-content > div.x-column > p > a[title="Read"]' )
             .then( data => {
                 let chapterList = data.map( element => {
                     return {
@@ -94,14 +92,14 @@ export default class HentaiCafe extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            let request = new Request( this.url + chapter.id, this.requestOptions );
-            Engine.Request.fetchUI( request, `pages.map( page => page.url );` )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        let request = new Request( this.url + chapter.id, this.requestOptions );
+        Engine.Request.fetchUI( request, `pages.map( page => page.url );` )
             .then( data => {
                 let pageList = data;
                 callback( null, pageList );
@@ -110,6 +108,5 @@ export default class HentaiCafe extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

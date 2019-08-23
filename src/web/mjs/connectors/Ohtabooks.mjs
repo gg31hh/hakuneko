@@ -1,29 +1,27 @@
-import SpeedBinb from './templates/SpeedBinb.mjs'
+import SpeedBinb from './templates/SpeedBinb.mjs';
 
-
+/**
+ *
+ */
+export default class Ohtabooks extends SpeedBinb {
 
     /**
      *
      */
-export default class Ohtabooks extends SpeedBinb {
+    constructor() {
+        super();
+        super.id = 'ohtabooks';
+        super.label = 'Ohtabooks';
+        this.tags = [ 'manga', 'japanese' ];
+        this.url = 'http://webcomic.ohtabooks.com';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'ohtabooks';
-            super.label      = 'Ohtabooks';
-            this.tags        = [ 'manga', 'japanese' ];
-            this.url         = 'http://webcomic.ohtabooks.com';
-        }
-
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            let uri = this.url + '/list/';
-            this.fetchDOM( uri, 'div.bnrList ul li a' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        let uri = this.url + '/list/';
+        this.fetchDOM( uri, 'div.bnrList ul li a' )
             .then( data => {
                 let mangaList = data.map( element => {
                     return {
@@ -37,14 +35,14 @@ export default class Ohtabooks extends SpeedBinb {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            let uri = this.url + manga.id;
-            this.fetchDOM( uri, 'a[onClick^="return !openBook("]' )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        let uri = this.url + manga.id;
+        this.fetchDOM( uri, 'a[onClick^="return !openBook("]' )
             .then( data => {
                 let chapterList = data.map( element => {
                     let partId = element.getAttribute( 'onclick' );
@@ -78,10 +76,10 @@ export default class Ohtabooks extends SpeedBinb {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        _getPageList( manga, chapter, callback ) {
-            this.fetchDOM( chapter.id, 'script[type="text/javascript"]' )
+    _getPageList( manga, chapter, callback ) {
+        this.fetchDOM( chapter.id, 'script[type="text/javascript"]' )
             .then( data => {
                 data = data[0].innerHTML;
                 let ch = {
@@ -91,6 +89,5 @@ export default class Ohtabooks extends SpeedBinb {
                 };
                 super._getPageList( manga, ch, callback );
             } );
-        }
     }
-
+}

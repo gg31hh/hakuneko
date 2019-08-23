@@ -1,29 +1,27 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
+/**
+ *
+ */
+export default class MangaCross extends Connector {
 
     /**
      *
      */
-export default class MangaCross extends Connector {
+    constructor() {
+        super();
+        super.id = 'mangacross';
+        super.label = 'MangaCross';
+        this.tags = [ 'manga', 'japanese' ];
+        this.url = 'https://mangacross.jp';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'mangacross';
-            super.label      = 'MangaCross';
-            this.tags        = [ 'manga', 'japanese' ];
-            this.url         = 'https://mangacross.jp';
-        }
-
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            let request = new Request( this.url + '/api/comics.json', this.requestOptions );
-            this.fetchJSON( request )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        let request = new Request( this.url + '/api/comics.json', this.requestOptions );
+        this.fetchJSON( request )
             .then( data => {
                 let mangaList = data.comics.map( element => {
                     return {
@@ -37,14 +35,14 @@ export default class MangaCross extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            let request = new Request( this.url + '/api/comics/' + manga.id + '/1.json', this.requestOptions );
-            this.fetchJSON( request )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        let request = new Request( this.url + '/api/comics/' + manga.id + '/1.json', this.requestOptions );
+        this.fetchJSON( request )
             .then( data => {
                 // Is there a way to access the "private" chapters ? Logging in didn't change anything...
                 let chapterList = data.comic.episodes.filter( element => element.status == 'public' ).map( element => {
@@ -60,14 +58,14 @@ export default class MangaCross extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            let request = new Request( this.url + chapter.id + '/viewer.json', this.requestOptions );
-            this.fetchJSON( request )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        let request = new Request( this.url + chapter.id + '/viewer.json', this.requestOptions );
+        this.fetchJSON( request )
             .then( data => {
                 let pageList = data.episode_pages.map( element => this.getAbsolutePath( element.image.pc_url, request.url ) );
                 callback( null, pageList );
@@ -76,6 +74,5 @@ export default class MangaCross extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

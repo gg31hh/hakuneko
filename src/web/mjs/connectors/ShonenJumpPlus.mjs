@@ -1,21 +1,18 @@
-import CoreView from './templates/CoreView.mjs'
+import CoreView from './templates/CoreView.mjs';
 
-
+/**
+ *
+ */
+export default class ShonenJumpPlus extends CoreView {
 
     /**
      *
      */
-export default class ShonenJumpPlus extends CoreView {
-
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'shonenjumpplus';
-            super.label      = '少年ジャンプ＋ (Shonen Jump +)';
-            this.tags        = [ 'manga', 'japanese' ];
-            this.url         = 'https://shonenjumpplus.com';
-        }
+    constructor() {
+        super();
+        super.id = 'shonenjumpplus';
+        super.label = '少年ジャンプ＋ (Shonen Jump +)';
+        this.tags = [ 'manga', 'japanese' ];
+        this.url = 'https://shonenjumpplus.com';
     }
-
+}

@@ -1,22 +1,19 @@
-import MangaHub from './MangaHub.mjs'
+import MangaHub from './MangaHub.mjs';
 
-
+/**
+ *
+ */
+export default class MangaKakalotFun extends MangaHub {
 
     /**
      *
      */
-export default class MangaKakalotFun extends MangaHub {
+    constructor() {
+        super();
+        super.id = 'mangakakalotfun';
+        super.label = 'MangaKakalotFun';
+        this.url = 'https://mangakakalot.fun';
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'mangakakalotfun';
-            super.label      = 'MangaKakalotFun';
-            this.url         = 'https://mangakakalot.fun';
-
-            this.path = 'mn01';
-        }
+        this.path = 'mn01';
     }
-
+}

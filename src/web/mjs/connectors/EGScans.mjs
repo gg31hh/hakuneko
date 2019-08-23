@@ -1,29 +1,27 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
+/**
+ *
+ */
+export default class EGScans extends Connector {
 
     /**
      *
      */
-export default class EGScans extends Connector {
+    constructor() {
+        super();
+        super.id = 'egscans';
+        super.label = 'Easy Going Scans';
+        this.tags = [ 'manga', 'high-quality', 'english', 'scanlation' ];
+        this.url = 'https://read.egscans.com';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'egscans';
-            super.label      = 'Easy Going Scans';
-            this.tags        = [ 'manga', 'high-quality', 'english', 'scanlation' ];
-            this.url         = 'https://read.egscans.com';
-        }
-
-        /**
-         *
-         */
-         _getMangaList( callback ) {
-            let request = new Request( this.url + '/', this.requestOptions );
-            this.fetchDOM( request, 'div.pager select[name="manga"] option:not(:first-of-type)' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        let request = new Request( this.url + '/', this.requestOptions );
+        this.fetchDOM( request, 'div.pager select[name="manga"] option:not(:first-of-type)' )
             .then( data => {
                 let mangaList = data.map( element => {
                     return {
@@ -37,14 +35,14 @@ export default class EGScans extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            let request = new Request( this.url + manga.id + '/', this.requestOptions );
-            this.fetchDOM( request, 'div.pager select[name="chapter"] option' )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        let request = new Request( this.url + manga.id + '/', this.requestOptions );
+        this.fetchDOM( request, 'div.pager select[name="chapter"] option' )
             .then( data => {
                 let chapterList = data.map( element => {
                     return {
@@ -59,16 +57,16 @@ export default class EGScans extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        // 
+    //
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            let request = new Request( this.url + chapter.id + '/', this.requestOptions );
-            fetch( request )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        let request = new Request( this.url + chapter.id + '/', this.requestOptions );
+        fetch( request )
             .then( response => response.text() )
             .then( data => {
                 let pageList = [];
@@ -83,6 +81,5 @@ export default class EGScans extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

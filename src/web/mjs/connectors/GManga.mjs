@@ -1,45 +1,43 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
+/**
+ *
+ */
+export default class GManga extends Connector {
 
     /**
      *
      */
-export default class GManga extends Connector {
+    constructor() {
+        super();
+        super.id = 'gmanga';
+        super.label = 'GManga';
+        this.tags = [ 'manga', 'arabic' ];
+        this.url = 'https://gmanga.me';
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'gmanga';
-            super.label      = 'GManga';
-            this.tags        = [ 'manga', 'arabic' ];
-            this.url         = 'https://gmanga.me';
+        this.mangaSearch = {
+            manga_types: {
+                include: [1, 2, 3, 4, 5, 6, 7],
+                exclude: []
+            },
+            story_status: { include: [], exclude: [] },
+            translation_status: { include: [], exclude: [3] },
+            categories: { include: [], exclude: [] },
+            chapters: { min: null, max: null },
+            dates: { start: null, end: null },
+            page: 0
+        };
+    }
 
-            this.mangaSearch = {
-                manga_types: {
-                    include: [1, 2, 3, 4, 5, 6, 7],
-                    exclude: []
-                },
-                story_status: { include: [], exclude: [] },
-                translation_status: { include: [], exclude: [3] },
-                categories: { include: [], exclude: [] },
-                chapters: { min: null, max: null },
-                dates: { start: null, end: null },
-                page: 0
-            };
-        }
-
-        /**
-         *
-         */
-        _getMangaListFromPages( page ) {
-            page = page || 1;
-            this._setMangaRequestOptions( page );
-            let request = new Request( this.url + '/api/mangas/search', this.requestOptions );
-            this._clearRequestOptions();
-            return this.fetchJSON( request )
+    /**
+     *
+     */
+    _getMangaListFromPages( page ) {
+        page = page || 1;
+        this._setMangaRequestOptions( page );
+        let request = new Request( this.url + '/api/mangas/search', this.requestOptions );
+        this._clearRequestOptions();
+        return this.fetchJSON( request )
             .then( data => {
                 data = data[ 'iv' ] ? this._haqiqa( data.data ) : data;
                 if( !data.mangas || !data.mangas.length ) {
@@ -52,15 +50,15 @@ export default class GManga extends Connector {
                     };
                 } );
                 return this._getMangaListFromPages( page + 1 )
-                .then( mangas => mangas.concat( mangaList ) );
+                    .then( mangas => mangas.concat( mangaList ) );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            this._getMangaListFromPages()
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        this._getMangaListFromPages()
             .then( data => {
                 callback( null, data );
             } )
@@ -68,13 +66,13 @@ export default class GManga extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            fetch( this.url + '/api/mangas/' + manga.id, this.requestOptions )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        fetch( this.url + '/api/mangas/' + manga.id, this.requestOptions )
             .then( response => response.json() )
             .then( data => {
                 data = data[ 'isCompact' ] ? this._unpack( data ) : data;
@@ -94,13 +92,13 @@ export default class GManga extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            fetch( this.url + '/mangas/' + chapter.id, this.requestOptions )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        fetch( this.url + '/mangas/' + chapter.id, this.requestOptions )
             .then( response => response.text() )
             .then( data => {
                 let pageList = data.match( /"hq_pages"\s*:\s*"(.*?)"\s*,/ )[1].split( '\\n' ).map( page => {
@@ -115,67 +113,69 @@ export default class GManga extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
+    }
+
+    /**
+     *
+     */
+    _setMangaRequestOptions( page ) {
+        this.mangaSearch.page = page;
+        this.requestOptions.method = 'POST';
+        this.requestOptions.headers.set( 'content-type', 'application/json' );
+        this.requestOptions.body = JSON.stringify( this.mangaSearch );
+    }
+
+    /**
+     *
+     */
+    _clearRequestOptions() {
+        delete this.requestOptions.body;
+        this.requestOptions.headers.delete( 'content-type' );
+        this.requestOptions.method = 'GET';
+        this.mangaSearch.page = 0;
+    }
+
+    /**
+     *******************
+     * ** BEGIN GMANGA ***
+     ******************
+     */
+
+    _r(t) {
+        return (this._r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+            return typeof t;
         }
-
-        /**
-         *
-         */
-         _setMangaRequestOptions( page ) {
-            this.mangaSearch.page = page;
-            this.requestOptions.method = 'POST';
-            this.requestOptions.headers.set( 'content-type', 'application/json' );
-            this.requestOptions.body = JSON.stringify( this.mangaSearch );
-        }
-
-        /**
-         *
-         */
-        _clearRequestOptions() {
-            delete this.requestOptions.body;
-            this.requestOptions.headers.delete( 'content-type' );
-            this.requestOptions.method = 'GET';
-            this.mangaSearch.page = 0;
-        }
-
-        /********************
-         *** BEGIN GMANGA ***
-         *******************/
-
-        _r(t) {
-            return (this._r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
-                return typeof t
-            }
             : function(t) {
-                return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t
+                return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
             }
-            )(t)
-        }
+        )(t);
+    }
 
-        _a(t) {
-            return (this._a = "function" == typeof Symbol && "symbol" === this._r(Symbol.iterator) ? function(t) {
-                return this._r(t)
-            }.bind(this)
+    _a(t) {
+        return (this._a = "function" == typeof Symbol && "symbol" === this._r(Symbol.iterator) ? function(t) {
+            return this._r(t);
+        }.bind(this)
             : function(t) {
-                return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : this._r(t)
+                return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : this._r(t);
             }.bind(this)
-            )(t)
-        }
+        )(t);
+    }
 
-        _isObject(t) {
-            var e = this._a(t);
-            return "function" === e || "object" === e && !!t
-        }
+    _isObject(t) {
+        var e = this._a(t);
+        return "function" === e || "object" === e && !!t;
+    }
 
-        _dataExists(t) {
-            var e = null !== t;
-            return "object" === this._a(t) ? e && 0 !== Object.keys(t).length : "" !== t && void 0 !== t && e
-        }
+    _dataExists(t) {
+        var e = null !== t;
+        return "object" === this._a(t) ? e && 0 !== Object.keys(t).length : "" !== t && void 0 !== t && e;
+    }
 
-        _haqiqa(t) {
-            let c = { default: CryptoJS };
-            if (!this._dataExists(t) || "string" != typeof t)
-                return !1;
-            var e = t.split("|")
+    _haqiqa(t) {
+        let c = { default: CryptoJS };
+        if (!this._dataExists(t) || "string" != typeof t)
+            return !1;
+        var e = t.split("|")
             , n = e[0]
             , r = e[2]
             , o = e[3]
@@ -185,43 +185,44 @@ export default class GManga extends Connector {
             }, c.default.enc.Hex.parse(i), {
                 iv: c.default.enc.Base64.parse(r)
             });
-            return JSON.parse(c.default.enc.Utf8.stringify(a))
-        }
-
-        _unpack(t) {
-            var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 1;
-            if (!t || e > t.maxLevel)
-                return t;
-            if (!this._isObject(t) || !t.isCompact)
-                return t;
-            var n = t.cols
-            , r = t.rows;
-            if (t.isObject) {
-                var o = {}
-                , i = 0;
-                return n.forEach(function(t) {
-                    o[t] = this._unpack(r[i], e + 1),
-                    i += 1
-                }.bind(this)),
-                o
-            }
-            if (t.isArray) {
-                o = [];
-                return r.forEach(function(t) {
-                    var e = {}
-                    , r = 0;
-                    n.forEach(function(n) {
-                        e[n] = t[r],
-                        r += 1
-                    }),
-                    o.push(e)
-                }),
-                o
-            }
-        }
-
-        /******************
-         *** END GMANGA ***
-         *****************/
+        return JSON.parse(c.default.enc.Utf8.stringify(a));
     }
 
+    _unpack(t) {
+        var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 1;
+        if (!t || e > t.maxLevel)
+            return t;
+        if (!this._isObject(t) || !t.isCompact)
+            return t;
+        var n = t.cols
+            , r = t.rows;
+        if (t.isObject) {
+            var o = {}
+                , i = 0;
+            return n.forEach(function(t) {
+                o[t] = this._unpack(r[i], e + 1),
+                i += 1;
+            }.bind(this)),
+            o;
+        }
+        if (t.isArray) {
+            o = [];
+            return r.forEach(function(t) {
+                var e = {}
+                    , r = 0;
+                n.forEach(function(n) {
+                    e[n] = t[r],
+                    r += 1;
+                }),
+                o.push(e);
+            }),
+            o;
+        }
+    }
+
+    /**
+     *****************
+     * ** END GMANGA ***
+     ****************
+     */
+}

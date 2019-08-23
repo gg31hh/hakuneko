@@ -1,23 +1,20 @@
-import MangaChan from './MangaChan.mjs'
+import MangaChan from './MangaChan.mjs';
 
-
-
-    /**
-     * Template: MangaChan
-     */
+/**
+ * Template: MangaChan
+ */
 export default class YaoiChan extends MangaChan {
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'yaoichan';
-            super.label      = 'Яой-тян (Yaoi-chan)';
-            this.tags        = [ 'hentai', 'russian' ];
-            this.url         = 'http://yaoi-chan.me';
+    /**
+     *
+     */
+    constructor() {
+        super();
+        super.id = 'yaoichan';
+        super.label = 'Яой-тян (Yaoi-chan)';
+        this.tags = [ 'hentai', 'russian' ];
+        this.url = 'http://yaoi-chan.me';
 
-            this.queryChapters = 'table.table_cha tr td div.manga a';
-        }
+        this.queryChapters = 'table.table_cha tr td div.manga a';
     }
-
+}

@@ -1,42 +1,40 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
+/**
+ *
+ */
+export default class PornComix extends Connector {
 
     /**
      *
      */
-export default class PornComix extends Connector {
+    constructor() {
+        super();
+        super.id = 'porncomix';
+        super.label = 'PornComix';
+        this.tags = [ 'hentai', 'english' ];
+        this.url = 'http://www.porncomix.info';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'porncomix';
-            super.label      = 'PornComix';
-            this.tags        = [ 'hentai', 'english' ];
-            this.url         = 'http://www.porncomix.info';
-        }
-
-        /**
-         * Overwrite base function to get manga from clipboard link.
-         */
-        _getMangaFromURI( uri ) {
-            return this.fetchDOM( uri.href, 'div.main div.content div.posts h2.post-title', 3 )
+    /**
+     * Overwrite base function to get manga from clipboard link.
+     */
+    _getMangaFromURI( uri ) {
+        return this.fetchDOM( uri.href, 'div.main div.content div.posts h2.post-title', 3 )
             .then( data => {
                 let id = uri.pathname;
                 let title = data[0].textContent.trim();
                 return Promise.resolve( new Manga( this, id, title ) );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaListFromPages( mangaPageLinks, index ) {
-            index = index || 0;
-            let request = new Request( mangaPageLinks[ index ], this.requestOptions );
-            return this.fetchDOM( request, 'div.main div.content div.posts div.post > a', 5 )
+    /**
+     *
+     */
+    _getMangaListFromPages( mangaPageLinks, index ) {
+        index = index || 0;
+        let request = new Request( mangaPageLinks[ index ], this.requestOptions );
+        return this.fetchDOM( request, 'div.main div.content div.posts div.post > a', 5 )
             .then( data => {
                 let mangaList = data.map( element => {
                     return {
@@ -46,19 +44,19 @@ export default class PornComix extends Connector {
                 } );
                 if( index < mangaPageLinks.length - 1 ) {
                     return this._getMangaListFromPages( mangaPageLinks, index + 1 )
-                    .then( mangas => mangaList.concat( mangas ) );
+                        .then( mangas => mangaList.concat( mangas ) );
                 } else {
                     return Promise.resolve( mangaList );
                 }
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            let request = new Request( this.url, this.requestOptions );
-            this.fetchDOM( request, 'div.main div.content div.posts div.paginator a:last-of-type' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        let request = new Request( this.url, this.requestOptions );
+        this.fetchDOM( request, 'div.main div.content div.posts div.paginator a:last-of-type' )
             .then( data => {
                 let pageCount = parseInt( data[0].href.match( /(\d+)\/?$/ )[1].trim() );
                 let pageLinks = [...( new Array( pageCount ) ).keys()].map( page => request.url + '/page/' + ( page + 1 ) + '/' );
@@ -71,13 +69,13 @@ export default class PornComix extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            Promise.resolve()
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        Promise.resolve()
             .then( () => {
                 let chapterList = [ {
                     id: manga.id,
@@ -90,14 +88,14 @@ export default class PornComix extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            let request = new Request( this.url + chapter.id, this.requestOptions );
-            this.fetchDOM( request, 'div.posts div.single-post dl.gallery-item dt a' )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        let request = new Request( this.url + chapter.id, this.requestOptions );
+        this.fetchDOM( request, 'div.posts div.single-post dl.gallery-item dt a' )
             .then( data => {
                 let pageList = data.map( element => this.createConnectorURI( this.getAbsolutePath( element, request.url ) ) );
                 callback( null, pageList );
@@ -106,17 +104,18 @@ export default class PornComix extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
-
-        /**
-         *
-         */
-        _handleConnectorURI( payload ) {
-            let request = new Request( payload, this.requestOptions );
-            // TODO: only perform requests when from download manager
-            // or when from browser for preview and selected chapter matches
-            return this.fetchDOM( request, 'div.posts div.single-post div.attachment-image source' )
-            .then( data => super._handleConnectorURI( this.getAbsolutePath( data[0], request.url ) ) );
-        }
     }
 
+    /**
+     *
+     */
+    _handleConnectorURI( payload ) {
+        let request = new Request( payload, this.requestOptions );
+        /*
+         * TODO: only perform requests when from download manager
+         * or when from browser for preview and selected chapter matches
+         */
+        return this.fetchDOM( request, 'div.posts div.single-post div.attachment-image source' )
+            .then( data => super._handleConnectorURI( this.getAbsolutePath( data[0], request.url ) ) );
+    }
+}

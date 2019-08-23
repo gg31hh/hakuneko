@@ -1,36 +1,34 @@
-import WordPressEManga from './templates/WordPressEManga.mjs'
+import WordPressEManga from './templates/WordPressEManga.mjs';
 
-
-
-    /**
-     * Is this really a WordPressEManga theme?
-     * Same as Komiku
-     */
+/**
+ * Is this really a WordPressEManga theme?
+ * Same as Komiku
+ */
 export default class OtakuIndo extends WordPressEManga {
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'otakuindo';
-            super.label      = 'OtakuIndo';
-            this.tags        = [ 'manga', 'indonesian' ];
-            this.url         = 'https://otakuindo.co';
-            this.path        = '/baca-manga/page/';
+    /**
+     *
+     */
+    constructor() {
+        super();
+        super.id = 'otakuindo';
+        super.label = 'OtakuIndo';
+        this.tags = [ 'manga', 'indonesian' ];
+        this.url = 'https://otakuindo.co';
+        this.path = '/baca-manga/page/';
 
-            this.queryMangas = 'div.news div.newslist div.newsinfo h4.newsjudul a';
-            this.queryChapters = 'div#list table.chapter tr td.judulseries a';
-            this.queryPages = 'div#readerareaimg source[src]:not([src=""])';
-        }
-        
-        /**
-         *
-         */
-        _getMangaListFromPages( page ) {
-            page = page || 1;
-            let request = new Request( this.url + this.path + page + '/', this.requestOptions );
-            return this.fetchDOM( request, this.queryMangas, 5 )
+        this.queryMangas = 'div.news div.newslist div.newsinfo h4.newsjudul a';
+        this.queryChapters = 'div#list table.chapter tr td.judulseries a';
+        this.queryPages = 'div#readerareaimg source[src]:not([src=""])';
+    }
+
+    /**
+     *
+     */
+    _getMangaListFromPages( page ) {
+        page = page || 1;
+        let request = new Request( this.url + this.path + page + '/', this.requestOptions );
+        return this.fetchDOM( request, this.queryMangas, 5 )
             .then( data => {
                 let mangaList = data.map( element => {
                     return {
@@ -40,18 +38,18 @@ export default class OtakuIndo extends WordPressEManga {
                 } );
                 if( data[0].closest( 'div.nw' ).querySelector( 'div.pag-nav a.next' ) ) {
                     return this._getMangaListFromPages( page + 1 )
-                    .then( mangas => mangaList.concat( mangas ) );
+                        .then( mangas => mangaList.concat( mangas ) );
                 } else {
                     return Promise.resolve( mangaList );
                 }
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            this._getMangaListFromPages()
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        this._getMangaListFromPages()
             .then( data => {
                 callback( null, data );
             } )
@@ -59,6 +57,5 @@ export default class OtakuIndo extends WordPressEManga {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

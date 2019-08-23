@@ -1,28 +1,26 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
-
-    /**
-     * 
-     */
+/**
+ *
+ */
 export default class DigitalTeam extends Connector {
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'digitalteam';
-            super.label      = 'DigitalTeam';
-            this.tags        = [ 'manga', 'high-quality', 'italian', 'scanlation' ];
-            this.url         = 'https://dgtread.com';
-        }
+    /**
+     *
+     */
+    constructor() {
+        super();
+        super.id = 'digitalteam';
+        super.label = 'DigitalTeam';
+        this.tags = [ 'manga', 'high-quality', 'italian', 'scanlation' ];
+        this.url = 'https://dgtread.com';
+    }
 
-        /**
-         *
-         */
-         _getMangaList( callback ) {
-            this.fetchDOM( this.url + '/reader/series', 'div#series_list ul li.manga_block ul li.manga_info div.manga_title a' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        this.fetchDOM( this.url + '/reader/series', 'div#series_list ul li.manga_block ul li.manga_info div.manga_title a' )
             .then( data => {
                 let mangaList = data.map( element => {
                     return {
@@ -36,13 +34,13 @@ export default class DigitalTeam extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            this.fetchDOM( this.url + manga.id, 'div.chapter_list ul li div.ch_top a' )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        this.fetchDOM( this.url + manga.id, 'div.chapter_list ul li div.ch_top a' )
             .then( data => {
                 let chapterList = data.map( element => {
                     return {
@@ -50,21 +48,21 @@ export default class DigitalTeam extends Connector {
                         title: element.text.trim(),
                         language: 'it'
                     };
-                } );               
+                } );
                 callback( null, chapterList );
             } )
             .catch( error => {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            let external = false;
-            fetch( this.url + chapter.id, this.requestOptions )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        let external = false;
+        fetch( this.url + chapter.id, this.requestOptions )
             .then( response => {
                 if( response.status !== 200 ) {
                     throw new Error( `Failed to receive page list (status: ${response.status}) - ${response.statusText}` );
@@ -99,32 +97,31 @@ export default class DigitalTeam extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _setPageRequestOptions( manga, chapter, external ) {
-            this.requestOptions.method = 'POST';
-            this.requestOptions.headers.set( 'content-type', 'application/x-www-form-urlencoded' );
-            this.requestOptions.body = new URLSearchParams( {
-                'info[manga]': manga.id.split( '/' ).pop(),
-                'info[chapter]': chapter.id.split( '/' ).slice( -2 )[0],
-                'info[ch_sub]': 0,
-                'info[title]': 'Digital Team'
-            } );
-            if( external ) {
-                this.requestOptions.body.set( 'info[external]', 1 );
-            }
-        }
-
-        /**
-         *
-         */
-        _clearRequestOptions() {
-            delete this.requestOptions.body;
-            this.requestOptions.headers.delete( 'content-type' );
-            this.requestOptions.method = 'GET';
+    /**
+     *
+     */
+    _setPageRequestOptions( manga, chapter, external ) {
+        this.requestOptions.method = 'POST';
+        this.requestOptions.headers.set( 'content-type', 'application/x-www-form-urlencoded' );
+        this.requestOptions.body = new URLSearchParams( {
+            'info[manga]': manga.id.split( '/' ).pop(),
+            'info[chapter]': chapter.id.split( '/' ).slice( -2 )[0],
+            'info[ch_sub]': 0,
+            'info[title]': 'Digital Team'
+        } );
+        if( external ) {
+            this.requestOptions.body.set( 'info[external]', 1 );
         }
     }
 
+    /**
+     *
+     */
+    _clearRequestOptions() {
+        delete this.requestOptions.body;
+        this.requestOptions.headers.delete( 'content-type' );
+        this.requestOptions.method = 'GET';
+    }
+}

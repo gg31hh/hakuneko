@@ -1,21 +1,18 @@
-import WordPressMadara from './templates/WordPressMadara.mjs'
+import WordPressMadara from './templates/WordPressMadara.mjs';
 
-
+/**
+ *
+ */
+export default class Toonily extends WordPressMadara {
 
     /**
      *
      */
-export default class Toonily extends WordPressMadara {
-
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'toonily';
-            super.label      = 'Toonily';
-            this.tags        = [ 'webtoon', 'english' ];
-            this.url         = 'https://toonily.com';
-        }
+    constructor() {
+        super();
+        super.id = 'toonily';
+        super.label = 'Toonily';
+        this.tags = [ 'webtoon', 'english' ];
+        this.url = 'https://toonily.com';
     }
-
+}

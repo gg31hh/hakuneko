@@ -1,38 +1,36 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
+/**
+ *
+ */
+export default class MangaFox extends Connector {
 
     /**
      *
      */
-export default class MangaFox extends Connector {
+    constructor() {
+        super();
+        // Public members for usage in UI (mandatory)
+        super.id = 'mangafox';
+        super.label = 'MangaFox';
+        this.tags = [ 'manga', 'english' ];
+        super.isLocked = false;
+        // Private members for internal usage only (convenience)
+        this.url = 'https://fanfox.net';
+        this.requestOptions.headers.set( 'x-cookie', 'isAdult=1' );
+        this.pageLoadDelay = 50;
+        // Private members for internal use that can be configured by the user through settings menu (set to undefined or false to hide from settings menu!)
+        this.config = undefined;
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            // Public members for usage in UI (mandatory)
-            super.id         = 'mangafox';
-            super.label      = 'MangaFox';
-            this.tags        = [ 'manga', 'english' ];
-            super.isLocked   = false;
-            // Private members for internal usage only (convenience)
-            this.url         = 'https://fanfox.net';
-            this.requestOptions.headers.set( 'x-cookie', 'isAdult=1' );
-            this.pageLoadDelay = 50;
-            // Private members for internal use that can be configured by the user through settings menu (set to undefined or false to hide from settings menu!)
-            this.config = undefined;
+        // this script uses chapterfun.ashx instead of chapter_bar.js as in MangaHere
+        this.scriptSource = 'chapterfun.ashx';
+    }
 
-            // this script uses chapterfun.ashx instead of chapter_bar.js as in MangaHere
-            this.scriptSource = 'chapterfun.ashx';
-        }
-
-        /**
-         *
-         */
-        get script() {
-            return `
+    /**
+     *
+     */
+    get script() {
+        return `
                 let result;
                 if( isbarchpater /*document.querySelector( 'div.cp-pager-list a[data-page]'*/ ) {
                     result = new Promise( ( resolve, reject ) => {
@@ -65,28 +63,28 @@ export default class MangaFox extends Connector {
                 }
                 result;
             `;
-        }
+    }
 
-        /**
-         * Overwrite base function to get manga from clipboard link.
-         */
-        _getMangaFromURI( uri ) {
-            return this.fetchDOM( uri.href, 'div.detail-info div.detail-info-right p.detail-info-right-title span.detail-info-right-title-font', 3 )
+    /**
+     * Overwrite base function to get manga from clipboard link.
+     */
+    _getMangaFromURI( uri ) {
+        return this.fetchDOM( uri.href, 'div.detail-info div.detail-info-right p.detail-info-right-title span.detail-info-right-title-font', 3 )
             .then( data => {
                 let id = uri.pathname + uri.search;
                 let title = data[0].innerText.trim();
                 return Promise.resolve( new Manga( this, id, title ) );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-         _getMangaListFromPages( mangaPageLinks, index ) {
-            if( index === undefined ) {
-                index = 0;
-            }
-            return this.wait( 0 )
+    /**
+     *
+     */
+    _getMangaListFromPages( mangaPageLinks, index ) {
+        if( index === undefined ) {
+            index = 0;
+        }
+        return this.wait( 0 )
             .then ( () => this.fetchDOM( mangaPageLinks[ index ], 'div.manga-list-1 ul li p.manga-list-1-item-title a', 5 ) )
             .then( data => {
                 let mangaList = data.map( element => {
@@ -97,18 +95,18 @@ export default class MangaFox extends Connector {
                 } );
                 if( index < mangaPageLinks.length - 1 ) {
                     return this._getMangaListFromPages( mangaPageLinks, index + 1 )
-                    .then( mangas => mangas.concat( mangaList ) );
+                        .then( mangas => mangas.concat( mangaList ) );
                 } else {
                     return Promise.resolve( mangaList );
                 }
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            this.fetchDOM( this.url + '/directory/', 'div.pager-list div.pager-list-left a:nth-last-child(2)' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        this.fetchDOM( this.url + '/directory/', 'div.pager-list div.pager-list-left a:nth-last-child(2)' )
             .then( data => {
                 let pageCount = parseInt( data[0].text.trim() );
                 let pageLinks = [...( new Array( pageCount ) ).keys()].map( page => this.url + '/directory/' + ( page + 1 ) + '.htm' );
@@ -121,13 +119,13 @@ export default class MangaFox extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            return this.fetchDOM( this.url + manga.id, 'div#chapterlist ul li a' )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        return this.fetchDOM( this.url + manga.id, 'div#chapterlist ul li a' )
             .then( data => {
                 // TODO: license element check ... (e.g. ???)
                 let chapterList = data.map( element => {
@@ -143,22 +141,22 @@ export default class MangaFox extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            this._getPageListDesktop( manga, chapter, callback );
-            //this._getPageListMobile( manga, chapter, callback );
-        }
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        this._getPageListDesktop( manga, chapter, callback );
+        //this._getPageListMobile( manga, chapter, callback );
+    }
 
-        /**
-         *
-         */
-        _getPageListDesktop( manga, chapter, callback ) {
-            let request = new Request( this.url + chapter.id, this.requestOptions );
-            Engine.Request.fetchUI( request, this.script )
+    /**
+     *
+     */
+    _getPageListDesktop( manga, chapter, callback ) {
+        let request = new Request( this.url + chapter.id, this.requestOptions );
+        Engine.Request.fetchUI( request, this.script )
             .then( pageList => {
                 callback( null, pageList );
             } )
@@ -166,16 +164,16 @@ export default class MangaFox extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageListMobile( manga, chapter, callback ) {
-            let uri = new URL( this.url + chapter.id );
-            uri.hostname = 'm.' + uri.hostname;
-            uri.pathname = uri.pathname.replace( '/manga/', '/roll_manga/' );
-            fetch( uri.href, this.requestOptions )
+    /**
+     *
+     */
+    _getPageListMobile( manga, chapter, callback ) {
+        let uri = new URL( this.url + chapter.id );
+        uri.hostname = 'm.' + uri.hostname;
+        uri.pathname = uri.pathname.replace( '/manga/', '/roll_manga/' );
+        fetch( uri.href, this.requestOptions )
             .then( response => {
                 // FIXME: very dangerous, might end up in endless recursion !!!
                 if( response.status === 503 || response.status === 504 ) {
@@ -204,6 +202,5 @@ export default class MangaFox extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

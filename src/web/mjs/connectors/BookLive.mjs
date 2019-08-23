@@ -1,50 +1,48 @@
-import SpeedBinb from './templates/SpeedBinb.mjs'
+import SpeedBinb from './templates/SpeedBinb.mjs';
 
-
+/**
+ *
+ */
+export default class BookLive extends SpeedBinb {
 
     /**
      *
      */
-export default class BookLive extends SpeedBinb {
+    constructor() {
+        super();
+        super.id = 'booklive';
+        super.label = 'BookLive';
+        this.tags = [ 'manga', 'japanese' ];
+        this.url = 'https://booklive.jp';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'booklive';
-            super.label      = 'BookLive';
-            this.tags        = [ 'manga', 'japanese' ];
-            this.url         = 'https://booklive.jp';
-        }
-
-        /**
-         * Overwrite base function to get manga from clipboard link.
-         */
-        _getMangaFromURI( uri ) {
-            return this.fetchDOM( uri.href, 'div#product_detail_area div.product_info > h1#product_display_1', 3 )
+    /**
+     * Overwrite base function to get manga from clipboard link.
+     */
+    _getMangaFromURI( uri ) {
+        return this.fetchDOM( uri.href, 'div#product_detail_area div.product_info > h1#product_display_1', 3 )
             .then( data => {
                 let id = uri.pathname;
                 let title = data[0].innerText.trim();
                 return Promise.resolve( new Manga( this, id, title ) );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            // https://booklive.jp/select/title/page_no/5012
-            let msg = 'This website does not support mangas/chapters, please copy and paste the links containing the chapters directly from your browser into HakuNeko.';
-            callback( new Error( msg ), undefined );
-        }
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        // https://booklive.jp/select/title/page_no/5012
+        let msg = 'This website does not support mangas/chapters, please copy and paste the links containing the chapters directly from your browser into HakuNeko.';
+        callback( new Error( msg ), undefined );
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            let request = new Request( this.url + manga.id, this.requestOptions );
-            this.fetchDOM( request, 'div#product_detail_area div.product_actions ul[class*="_actions"] a.bl-bviewer' )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        let request = new Request( this.url + manga.id, this.requestOptions );
+        this.fetchDOM( request, 'div#product_detail_area div.product_actions ul[class*="_actions"] a.bl-bviewer' )
             .then( data => {
                 let chapterList = data.map( element => {
                     return {
@@ -59,6 +57,5 @@ export default class BookLive extends SpeedBinb {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

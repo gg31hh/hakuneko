@@ -1,49 +1,47 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
-
-    /**
-     * @author Neogeek
-     */
+/**
+ * @author Neogeek
+ */
 export default class MangaPark extends Connector {
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            // Public members for usage in UI (mandatory)
-            super.id         = 'mangapark';
-            super.label      = 'MangaPark (2018)';
-            this.tags        = [ 'manga', 'multi-lingual' ];
-            super.isLocked   = false;
-            // Private members for internal usage only (convenience)
-            this.url         = 'https://mangapark.org';
-            this.requestOptions.headers.set( 'x-cookie', 'h=1' );
-            // Private members for internal use that can be configured by the user through settings menu (set to undefined or false to hide from settings menu!)
-            this.config = undefined;
-        }
+    /**
+     *
+     */
+    constructor() {
+        super();
+        // Public members for usage in UI (mandatory)
+        super.id = 'mangapark';
+        super.label = 'MangaPark (2018)';
+        this.tags = [ 'manga', 'multi-lingual' ];
+        super.isLocked = false;
+        // Private members for internal usage only (convenience)
+        this.url = 'https://mangapark.org';
+        this.requestOptions.headers.set( 'x-cookie', 'h=1' );
+        // Private members for internal use that can be configured by the user through settings menu (set to undefined or false to hide from settings menu!)
+        this.config = undefined;
+    }
 
-        /**
-         * Overwrite base function to get manga from clipboard link.
-         */
-        _getMangaFromURI( uri ) {
-            return this.fetchDOM( uri.href, 'div.container div.mt-4 h3 a', 3 )
+    /**
+     * Overwrite base function to get manga from clipboard link.
+     */
+    _getMangaFromURI( uri ) {
+        return this.fetchDOM( uri.href, 'div.container div.mt-4 h3 a', 3 )
             .then( data => {
                 let id = uri.pathname + uri.search;
                 let title = data[0].innerText.trim();
                 return Promise.resolve( new Manga( this, id, title ) );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaListFromPages( mangaPageLinks, index ) {
-            if( index === undefined ) {
-                index = 0;
-            }
-            return this.wait( 0 )
+    /**
+     *
+     */
+    _getMangaListFromPages( mangaPageLinks, index ) {
+        if( index === undefined ) {
+            index = 0;
+        }
+        return this.wait( 0 )
             .then ( () => this.fetchDOM( mangaPageLinks[ index ], 'div#browse h6 a', 5 ) )
             .then( data => {
                 let mangaList = data.map( element => {
@@ -55,18 +53,18 @@ export default class MangaPark extends Connector {
                 } );
                 if( index < mangaPageLinks.length - 1 ) {
                     return this._getMangaListFromPages( mangaPageLinks, index + 1 )
-                    .then( mangas => mangas.concat( mangaList ) );
+                        .then( mangas => mangas.concat( mangaList ) );
                 } else {
                     return Promise.resolve( mangaList );
                 }
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            this.fetchDOM( this.url + '/browse', 'nav.d-md-block ul.pagination li:nth-last-child(2) a' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        this.fetchDOM( this.url + '/browse', 'nav.d-md-block ul.pagination li:nth-last-child(2) a' )
             .then( data => {
                 let pageCount = parseInt( data[0].text.trim() );
                 let pageLinks = [...( new Array( pageCount ) ).keys()].map( page => this.url + '/browse?page=' + ( page + 1 ) );
@@ -79,13 +77,13 @@ export default class MangaPark extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
-        
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            fetch( this.url + manga.id, this.requestOptions )
+    }
+
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        fetch( this.url + manga.id, this.requestOptions )
             .then( response => {
                 if( response.status !== 200 ) {
                     throw new Error( `Failed to receive chapter list (status: ${response.status}) - ${response.statusText}` );
@@ -117,13 +115,13 @@ export default class MangaPark extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            fetch( this.url + chapter.id, this.requestOptions )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        fetch( this.url + chapter.id, this.requestOptions )
             .then( response => {
                 if( response.status !== 200 ) {
                     throw new Error( `Failed to receive page list (status: ${response.status}) - ${response.statusText}` );
@@ -139,6 +137,5 @@ export default class MangaPark extends Connector {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

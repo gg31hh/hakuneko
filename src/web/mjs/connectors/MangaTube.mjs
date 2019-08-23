@@ -1,33 +1,31 @@
-import Connector from '../engine/Connector.mjs'
+import Connector from '../engine/Connector.mjs';
 
-
-
-    /**
-     * 
-     */
+/**
+ *
+ */
 export default class MangaTube extends Connector {
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            // Public members for usage in UI (mandatory)
-            super.id         = 'mangatube';
-            super.label      = 'MangaTube';
-            this.tags        = [ 'manga', 'german' ];
-            super.isLocked   = false;
-            // Private members for internal usage only (convenience)
-            this.url         = 'https://manga-tube.me';
-            // Private members for internal use that can be configured by the user through settings menu (set to undefined or false to hide from settings menu!)
-            this.config = undefined;
-        }
+    /**
+     *
+     */
+    constructor() {
+        super();
+        // Public members for usage in UI (mandatory)
+        super.id = 'mangatube';
+        super.label = 'MangaTube';
+        this.tags = [ 'manga', 'german' ];
+        super.isLocked = false;
+        // Private members for internal usage only (convenience)
+        this.url = 'https://manga-tube.me';
+        // Private members for internal use that can be configured by the user through settings menu (set to undefined or false to hide from settings menu!)
+        this.config = undefined;
+    }
 
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            fetch( this.url + '/ajax', this.requestOptions )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        fetch( this.url + '/ajax', this.requestOptions )
             .then( response => {
                 if( response.status !== 200 ) {
                     throw new Error( `Failed to receive manga list (status: ${response.status}) - ${response.statusText}` );
@@ -44,28 +42,28 @@ export default class MangaTube extends Connector {
                 params.append( 'action', 'load_series_list_entries' );
                 let promises = [...( new Array( pageCount ) ).keys()].map( page => {
                     return this.wait( 50 * page )
-                    .then( () => {
-                        params.set( 'parameter[page]', page + 1 );
-                        this.requestOptions.body = params.toString();
-                        return fetch( this.url + '/ajax', this.requestOptions );
-                    } )
-                    .then( response => {
-                        if( response.status !== 200 ) {
-                            throw new Error( `Failed to receive manga list (status: ${response.status}) - ${response.statusText}` );
-                        }
-                        return response.json();
-                    } )
-                    .then( data => {
-                        let mangaList = data.success.map( entry => {
-                            return {
-                                id: entry.manga_slug,//entry.manga_id,
-                                title: entry.manga_title
+                        .then( () => {
+                            params.set( 'parameter[page]', page + 1 );
+                            this.requestOptions.body = params.toString();
+                            return fetch( this.url + '/ajax', this.requestOptions );
+                        } )
+                        .then( response => {
+                            if( response.status !== 200 ) {
+                                throw new Error( `Failed to receive manga list (status: ${response.status}) - ${response.statusText}` );
                             }
+                            return response.json();
+                        } )
+                        .then( data => {
+                            let mangaList = data.success.map( entry => {
+                                return {
+                                    id: entry.manga_slug,//entry.manga_id,
+                                    title: entry.manga_title
+                                };
+                            } );
+                            return Promise.resolve( mangaList );
                         } );
-                        return Promise.resolve( mangaList );
-                    } )
                 } );
-                return Promise.all( promises ); 
+                return Promise.all( promises );
             } )
             .then( mangas => {
                 this.requestOptions.method = 'GET';
@@ -77,13 +75,13 @@ export default class MangaTube extends Connector {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getChapterList( manga, callback ) {
-            this.fetchDOM( this.url + '/series/' + manga.id, 'div#chapter div.vol-container' )
+    /**
+     *
+     */
+    _getChapterList( manga, callback ) {
+        this.fetchDOM( this.url + '/series/' + manga.id, 'div#chapter div.vol-container' )
             .then( data => {
                 let chapterList = [];
                 data.forEach( card => {
@@ -110,13 +108,13 @@ export default class MangaTube extends Connector {
                 console.error( error, manga );
                 callback( error, undefined );
             } );
-        }
+    }
 
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            fetch( this.url + chapter.id, this.requestOptions )
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        fetch( this.url + chapter.id, this.requestOptions )
             .then( response => {
                 if( response.status !== 200 ) {
                     throw new Error( `Failed to receive page list (status: ${response.status}) - ${response.statusText}` );
@@ -132,7 +130,6 @@ export default class MangaTube extends Connector {
             .catch( error => {
                 console.error( error, chapter );
                 callback( error, undefined );
-            } ); 
-        }
+            } );
     }
-
+}

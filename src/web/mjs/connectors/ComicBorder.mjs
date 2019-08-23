@@ -1,28 +1,26 @@
-import CoreView from './templates/CoreView.mjs'
+import CoreView from './templates/CoreView.mjs';
 
-
+/**
+ *
+ */
+export default class ComicBorder extends CoreView {
 
     /**
      *
      */
-export default class ComicBorder extends CoreView {
+    constructor() {
+        super();
+        super.id = 'comicborder';
+        super.label = 'コミックボーダー (ComicBorder)';
+        this.tags = [ 'manga', 'japanese' ];
+        this.url = 'https://comicborder.com';
+    }
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'comicborder';
-            super.label      = 'コミックボーダー (ComicBorder)';
-            this.tags        = [ 'manga', 'japanese' ];
-            this.url         = 'https://comicborder.com';
-        }
-
-        /**
-         *
-         */
-        _getMangaList( callback ) {
-            this.fetchDOM( this.url, 'ul.index-list-all li a' )
+    /**
+     *
+     */
+    _getMangaList( callback ) {
+        this.fetchDOM( this.url, 'ul.index-list-all li a' )
             .then( data => {
                 let mangaList = data.map( element => {
                     return {
@@ -36,6 +34,5 @@ export default class ComicBorder extends CoreView {
                 console.error( error, this );
                 callback( error, undefined );
             } );
-        }
     }
-
+}

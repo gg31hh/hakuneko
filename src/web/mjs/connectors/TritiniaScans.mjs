@@ -1,30 +1,28 @@
-import WordPressMadara from './templates/WordPressMadara.mjs'
+import WordPressMadara from './templates/WordPressMadara.mjs';
 
-
+/**
+ *
+ */
+export default class TritiniaScans extends WordPressMadara {
 
     /**
      *
      */
-export default class TritiniaScans extends WordPressMadara {
+    constructor() {
+        super();
+        super.id = 'tritiniascans';
+        super.label = 'Tritinia Scans';
+        this.tags = [ 'webtoon', 'high-quality', 'english', 'scanlation' ];
+        this.url = 'https://tritiniascans.ml';
 
-        /**
-         *
-         */
-        constructor() {
-            super();
-            super.id         = 'tritiniascans';
-            super.label      = 'Tritinia Scans';
-            this.tags        = [ 'webtoon', 'high-quality', 'english', 'scanlation' ];
-            this.url         = 'https://tritiniascans.ml';
+        this.queryPages = 'div.page-break img';
+    }
 
-            this.queryPages = 'div.page-break img';
-        }
-
-        /**
-         *
-         */
-        _getPageList( manga, chapter, callback ) {
-            let script = `
+    /**
+     *
+     */
+    _getPageList( manga, chapter, callback ) {
+        let script = `
                 new Promise( ( resolve, reject ) => {
                     let images;
                     if( window.chapter_preloaded_images ) {
@@ -35,8 +33,8 @@ export default class TritiniaScans extends WordPressMadara {
                     resolve( images );
                 } );
             `;
-            let request = new Request( this.url + chapter.id, this.requestOptions );
-            Engine.Request.fetchUI( request, script )
+        let request = new Request( this.url + chapter.id, this.requestOptions );
+        Engine.Request.fetchUI( request, script )
             .then( data => {
                 callback( null, data );
             } )
@@ -44,6 +42,5 @@ export default class TritiniaScans extends WordPressMadara {
                 console.error( error, chapter );
                 callback( error, undefined );
             } );
-        }
     }
-
+}
